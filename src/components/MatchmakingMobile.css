@@ -1,12 +1,11 @@
-button {
-  max-width: 100%;
-}
-.matchmaking-mobile {
-  background-color: black;
-}
-.mobile-postion {
+.mobile-position {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+section {
+  background-image: url(../images/background-matchmaking.-mobile.jpeg);
+  height: 1000px;
 }

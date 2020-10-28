@@ -5,8 +5,8 @@ import questionMark from "../images/question-mark.png";
 function CardsMobile() {
   return (
     <div className="cards-mobile">
-      <button type="submit">
-        <img src={questionMark} alt="Sélectionner un série" />
+      <button className="qmark" type="submit">
+        <img className="qmark" src={questionMark} alt="Sélectionner un série" />
       </button>
     </div>
   );
