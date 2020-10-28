@@ -1,0 +1,12 @@
+.cards-mobile {
+  width: 50%;
+  height: 250px;
+  background-color: white;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+img {
+  width: 100%;
+  padding-top: 40px;
+}

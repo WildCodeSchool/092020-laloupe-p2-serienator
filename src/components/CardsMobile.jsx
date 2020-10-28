@@ -1,11 +1,14 @@
-import React from 'react';
-import './Cards_mobile.css';
-function CardsMobile(){
-    return(
-        <button className="cardsMobile">   
-                <h1>coucou!</h1>                               
-                <img src="" alt="Sélectionner un série"/>
-        </button>
-    );
+import React from "react";
+import "./CardsMobile.css";
+import questionMark from "../images/question-mark.png";
+
+function CardsMobile() {
+  return (
+    <div className="cards-mobile">
+      <button type="submit">
+        <img src={questionMark} alt="Sélectionner un série" />
+      </button>
+    </div>
+  );
 }
 export default CardsMobile;

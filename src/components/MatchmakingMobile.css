@@ -1,0 +1,12 @@
+button {
+  max-width: 100%;
+}
+.matchmaking-mobile {
+  background-color: black;
+}
+.mobile-postion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}

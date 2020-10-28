@@ -1,9 +1,13 @@
 import React from "react";
-
+import MatchmakingMobile from "./components/MatchmakingMobile";
 import "./App.css";
 
 function App() {
-  return <main className="container" />;
+  return (
+    <div>
+      <MatchmakingMobile />
+    </div>
+  );
 }
 
 export default App;
