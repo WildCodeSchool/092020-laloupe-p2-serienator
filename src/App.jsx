@@ -1,9 +1,8 @@
 import React from "react";
-
 import "./App.css";
 
 function App() {
-  return <main className="container" />;
+  return <div />;
 }
 
 export default App;
