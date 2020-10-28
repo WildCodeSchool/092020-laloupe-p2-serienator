@@ -1,0 +1,42 @@
+.matchmaking {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(../images/background-matchmaking2.jpeg);
+  background-size: 100% 100%;
+  background-position: bottom;
+}
+
+.matchmaking h2 {
+  color: #01356d;
+  font-size: 40px;
+  text-align: center;
+  padding: 0 10%;
+  font-weight: 400;
+}
+
+.matchmaking .matchmaking-display {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 10%;
+  justify-content: space-between;
+}
+
+.matchmaking-card {
+  display: flex;
+  width: 200px;
+  height: 300px;
+  border-radius: 15px;
+  background-color: linear-gradient(180deg, #0f69a7, #01356d);
+  box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.33);
+  overflow: hidden;
+}
+
+.matchmaking-card img {
+  color: #e1af74;
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+}
