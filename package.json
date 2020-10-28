@@ -1,8 +1,8 @@
 {
-  "name": "react-starter-template",
+  "name": "serienator",
   "version": "1.0.0",
-  "description": "template for react app",
-  "author": "Basile V. <basile64.v@gmail.com>",
+  "description": "Machine thats recommands TV series",
+  "author": "Mauger, Schwarz, Guibert, Torres",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
