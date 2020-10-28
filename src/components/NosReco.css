@@ -1,11 +1,8 @@
-.display-nos-reco {
-  display: none;
-}
-
 .container-nos-reco {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: no-wrap;
   justify-content: space-around;
+  width: 100%;
 }
 
 .cards-nos-reco {
