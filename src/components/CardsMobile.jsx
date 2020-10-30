@@ -1,6 +1,6 @@
 import React from "react";
 import "./CardsMobile.css";
-import questionMark from "../images/question-mark.png";
+import questionMark from "../images/questioncard3.jpeg";
 
 function CardsMobile() {
   return (
