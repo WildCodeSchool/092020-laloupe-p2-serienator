@@ -2,29 +2,20 @@ import React from "react";
 import "./CardsMobile.css";
 import questionMark from "../images/question-mark.png";
 
-class CardsMobile extends React.Component {
-  constructor() {
-    super();
-    this.displayPrompt = this.displayPrompt.bind(this);
-  }
-  //     displayPrompt () {
-  //         let serie = prompt("Entrez le nom d'une série");
-  //         console.log(serie);
-  // }
-
-  render() {
-    return (
-      <div className="cards-mobile">
-        <button className="qmark" type="button" onClick={this.displayPrompt}>
-          <img
-            className="qmark"
-            src={questionMark}
-            alt="Sélectionner un série"
-          />
-        </button>
+function CardsMobile() {
+  return (
+    <div className="cards-mobile">
+      <img className="qmark" src={questionMark} alt="Sélectionner un série" />
+      <div className="toggle-search">
+        <input className="toggle-search" type="checkbox" />
       </div>
-    );
-  }
+      <div className="serie-select">
+        <forms>
+          <input className="serie-select" type="text" />
+        </forms>
+      </div>
+    </div>
+  );
 }
 
 export default CardsMobile;
