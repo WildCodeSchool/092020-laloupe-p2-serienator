@@ -1,16 +1,21 @@
+.display-nos-reco {
+  display: block;
+}
+
 .container-nos-reco {
   display: flex;
   flex-wrap: no-wrap;
   justify-content: space-around;
-  width: 100%;
-}
-
-.cards-nos-reco {
-  padding: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .cards-nos-reco img {
   border-radius: 10px;
+}
+
+.cards-nos-reco:hover {
+  cursor: pointer;
 }
 
 .subtitle-nos-reco {
