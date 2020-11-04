@@ -1,24 +1,17 @@
 import React from "react";
 import "./matchmaking.css";
-import imgDefault from "../images/questioncard3.jpeg";
+import PropTypes from "prop-types";
 
-class MatchmakingCard extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      defaultImg: imgDefault,
-      defaultAlt: "card with a question mark",
-    };
-  }
-
-  render() {
-    const { defaultImg, defaultAlt } = this.state;
-    return (
-      <div className="matchmaking-card">
-        <img src={defaultImg} alt={defaultAlt} />
-      </div>
-    );
-  }
+function MatchmakingCard({ card }) {
+  return (
+    <div className="matchmaking-card">
+      <img src={card.poster_path} alt={card.name} />
+    </div>
+  );
 }
+
+MatchmakingCard.propTypes = {
+  card: PropTypes.objectOf(PropTypes.object).isRequired,
+};
 
 export default MatchmakingCard;
