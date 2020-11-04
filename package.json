@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel public/index.html --open --port 3000",
     "build": "parcel build public/index.html",
-    "lint": "eslint src/**/* --fix",
+    "lint": "eslint src/**/*.js* --fix ",
     "format": "prettier --write \"src/**/*.+(js|jsx|json|yml|yaml|css|md|vue)\""
   },
   "keywords": [],
@@ -37,8 +37,10 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "src": "^1.1.2"
   },
   "husky": {
     "hooks": {

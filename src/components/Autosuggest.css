@@ -7,9 +7,12 @@
   position: relative;
 }
 
+.form-Autosuggest input {
+  width: 300px;
+}
+
 .container-Autosuggest {
   position: absolute;
-  border: solid 1px;
   background-color: white;
   top: 30px;
 }

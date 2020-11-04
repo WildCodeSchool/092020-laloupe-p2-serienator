@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import ResultAuto from "./ResultAuto";
 import "./Autosuggest.css";
+import testPatern from "../images/test-pattern-152459_960_720.webp";
 
 let resultSearch = [];
 const baseImg = "https://image.tmdb.org/t/p/w92";
@@ -14,9 +15,9 @@ class Autosuggest extends React.Component {
 
   handleChange = (event) => {
     const title = event.target.value;
-    if (title.length > 1) {
+    if (title.length >= 1) {
       const researchAPI =
-        "https://api.themoviedb.org/3/search/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&page=1&include_adult=false&query=";
+        "https://api.themoviedb.org/3/search/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&page=1&include_adult=false&query=";
       axios
         .get(researchAPI + title)
         .then((response) => response.data)
@@ -24,6 +25,8 @@ class Autosuggest extends React.Component {
           resultSearch = data.results;
           console.log(resultSearch);
         });
+    } else if (resultSearch === 0) {
+      resultSearch = [];
     } else {
       resultSearch = [];
     }
@@ -34,9 +37,14 @@ class Autosuggest extends React.Component {
     event.preventDefault();
   };
 
+  handleClick = (findId) => {
+    const eureka = resultSearch[findId].name;
+    this.setState({ title: eureka });
+  };
+
   render() {
     const { title } = this.state;
-    const { handleSubmit, handleChange } = this;
+    const { handleSubmit, handleChange, handleClick } = this;
     return (
       <div>
         <form onSubmit={handleSubmit} className="form-Autosuggest">
@@ -50,11 +58,17 @@ class Autosuggest extends React.Component {
             />
           </label>
           <ul className="container-Autosuggest">
-            {resultSearch.map((resultat) => (
+            {resultSearch.map((resultat, index) => (
               <ResultAuto
                 key={resultat.id}
-                posterPath={baseImg + resultat.poster_path}
+                posterPath={
+                  resultat.poster_path
+                    ? baseImg + resultat.poster_path
+                    : testPatern
+                }
                 name={resultat.name}
+                handleClick={handleClick}
+                id={index}
               />
             ))}
           </ul>

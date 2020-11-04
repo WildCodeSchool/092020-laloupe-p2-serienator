@@ -22,5 +22,7 @@ module.exports = {
     "react/state-in-constructor": 0,
     "react/jsx-one-expression-per-line": 0,
     "no-console": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/no-unescaped-entities": 0,
   },
 };
