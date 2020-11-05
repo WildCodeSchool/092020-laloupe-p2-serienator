@@ -4,32 +4,36 @@ import ResultAuto from "./ResultAuto";
 import "./Autosuggest.css";
 import testPatern from "../images/test-pattern-152459_960_720.webp";
 
-let resultSearch = [];
 const baseImg = "https://image.tmdb.org/t/p/w92";
 
 class Autosuggest extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { title: "" };
+    this.state = { title: "", resultSearch: [], idS: 0 };
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { title } = this.state;
+    if (prevState.title !== title) {
+      this.apiCall();
+    }
+  }
+
+  apiCall = () => {
+    const { title } = this.state;
+    const researchAPI =
+      "https://api.themoviedb.org/3/search/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&page=1&include_adult=false&query=";
+
+    axios
+      .get(researchAPI + title)
+      .then((response) => response.data)
+      .then((data) => {
+        this.setState({ resultSearch: data.results });
+      });
+  };
 
   handleChange = (event) => {
     const title = event.target.value;
-    if (title.length >= 1) {
-      const researchAPI =
-        "https://api.themoviedb.org/3/search/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&page=1&include_adult=false&query=";
-      axios
-        .get(researchAPI + title)
-        .then((response) => response.data)
-        .then((data) => {
-          resultSearch = data.results;
-          console.log(resultSearch);
-        });
-    } else if (resultSearch === 0) {
-      resultSearch = [];
-    } else {
-      resultSearch = [];
-    }
     this.setState({ title });
   };
 
@@ -38,12 +42,15 @@ class Autosuggest extends React.Component {
   };
 
   handleClick = (findId) => {
+    const { resultSearch, idS } = this.state;
     const eureka = resultSearch[findId].name;
-    this.setState({ title: eureka });
+    console.log("1", idS);
+    this.setState({ title: eureka, idS: resultSearch[findId].id });
+    console.log("2", idS);
   };
 
   render() {
-    const { title } = this.state;
+    const { title, resultSearch } = this.state;
     const { handleSubmit, handleChange, handleClick } = this;
     return (
       <div>
