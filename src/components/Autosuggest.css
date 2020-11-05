@@ -1,0 +1,18 @@
+.form-Autosuggest {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 100px;
+  align-content: center;
+  position: relative;
+}
+
+.form-Autosuggest input {
+  width: 300px;
+}
+
+.container-Autosuggest {
+  position: absolute;
+  background-color: white;
+  top: 30px;
+}
