@@ -9,17 +9,15 @@
 }
 
 .matchmaking h2 {
-  color: #01356d;
-  font-size: 40px;
   text-align: center;
-  padding: 0 10%;
+  margin: 25px;
+  padding: 0 5%;
   font-weight: 400;
 }
 
 .matchmaking .matchmaking-container {
   display: flex;
   width: 100%;
-  box-sizing: border-box;
   padding: 1rem 10%;
   justify-content: space-between;
   align-items: center;
@@ -82,8 +80,8 @@
   padding: 10px;
   top: 0;
   left: 5px;
-  width: 170px;
-  height: 150px;
+  width: 200px;
+  height: 175px;
   z-index: 0;
 }
 
