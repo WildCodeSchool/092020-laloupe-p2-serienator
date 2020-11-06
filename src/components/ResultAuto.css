@@ -1,4 +1,26 @@
 .container-ResultAuto {
   display: flex;
   width: 300px;
+  height: 50px;
+  padding: 1%;
+  opacity: 0.5;
+}
+
+.container-ResultAuto:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.container-ResultAuto img {
+  width: 40px;
+  border-radius: 5px;
+}
+
+.container-ResultAuto p {
+  font-weight: bold;
+  color: #01356d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
 }
