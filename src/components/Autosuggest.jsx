@@ -13,9 +13,10 @@ class Autosuggest extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { title } = this.state;
-    if (prevState.title !== title) {
+    const { title, idS } = this.state;
+    if (prevState.title !== title && idS === 0) {
       this.apiCall();
+      console.log(idS);
     }
   }
 
@@ -24,17 +25,21 @@ class Autosuggest extends React.Component {
     const researchAPI =
       "https://api.themoviedb.org/3/search/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&page=1&include_adult=false&query=";
 
-    axios
-      .get(researchAPI + title)
-      .then((response) => response.data)
-      .then((data) => {
-        this.setState({ resultSearch: data.results });
-      });
+    if (title.length > 0) {
+      axios
+        .get(researchAPI + title)
+        .then((response) => response.data)
+        .then((data) => {
+          this.setState({ resultSearch: data.results });
+        });
+    } else {
+      this.setState({ resultSearch: [] });
+    }
   };
 
   handleChange = (event) => {
     const title = event.target.value;
-    this.setState({ title });
+    this.setState({ title, idS: 0 });
   };
 
   handleSubmit = (event) => {
@@ -42,11 +47,14 @@ class Autosuggest extends React.Component {
   };
 
   handleClick = (findId) => {
-    const { resultSearch, idS } = this.state;
+    const { resultSearch } = this.state;
     const eureka = resultSearch[findId].name;
-    console.log("1", idS);
-    this.setState({ title: eureka, idS: resultSearch[findId].id });
-    console.log("2", idS);
+    console.log("clic");
+    this.setState({
+      title: eureka,
+      idS: resultSearch[findId].id,
+      resultSearch: [],
+    });
   };
 
   render() {

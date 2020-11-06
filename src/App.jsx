@@ -1,17 +1,21 @@
 import React from "react";
 import MatchmakingMobile from "./components/MatchmakingMobile";
+import Matchmaking from "./components/Matchmaking";
+import Header from "./components/Header";
 import NosReco from "./components/NosReco";
-import "./App.css";
-import FicheTech from "./components/FicheTech";
 import Autosuggest from "./components/Autosuggest";
+import FicheTech from "./components/FicheTech";
+import "./App.css";
 
 function App() {
   return (
     <div>
-      <MatchmakingMobile />
+      <Header />
       <Autosuggest />
+      <Matchmaking />
       <NosReco />
       <FicheTech />
+      <MatchmakingMobile />
     </div>
   );
 }
