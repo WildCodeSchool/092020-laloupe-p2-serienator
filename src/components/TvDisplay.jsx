@@ -8,19 +8,20 @@ import successScreen from "../images/success.gif";
 import leftCable from "../images/left-cable.png";
 import rightCable from "../images/right-cable.png";
 
+const screenStep = [offScreen, glitchScreen, loadingScreen, successScreen];
+
 class TvDisplay extends React.Component {
   constructor() {
     super();
     this.state = {
       screen: offScreen,
       counter: 1,
-      screenStep: [offScreen, glitchScreen, loadingScreen, successScreen],
     };
     this.handleScreen = this.handleScreen.bind(this);
   }
 
   handleScreen() {
-    const { counter, screenStep } = this.state;
+    const { counter } = this.state;
     if (counter < 3) {
       const newcounter = counter + 1;
       this.setState({ counter: newcounter });
