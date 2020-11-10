@@ -4,7 +4,7 @@
   height: 50px;
   width: 200px;
   margin-top: 10px;
-  z-index: 5000;
+  z-index: 8;
 }
 
 .SerieForm2 {
@@ -28,12 +28,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
-
   border: 0px;
   background: #e1af74;
   border-radius: 40px;
   padding: 10px 30px;
-
   height: 65px;
   color: white;
   font-size: larger;
@@ -128,6 +126,13 @@
   margin-top: -80px;
   font-size: 20px;
   z-index: 4000;
+}
+
+.containerAutosuggest {
+  position: absolute;
+  margin-top: -15px;
+  z-index: 10;
+  width: 20%;
 }
 
 @media screen and (min-width: 0px) and (max-width: 700px) {
