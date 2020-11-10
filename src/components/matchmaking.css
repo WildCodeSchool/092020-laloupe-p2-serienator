@@ -46,7 +46,7 @@
 }
 
 .tv-component .cable {
-  max-width: 200px;
+  /* max-width: 200px; */
   z-index: 0;
 }
 

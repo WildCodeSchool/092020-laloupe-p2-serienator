@@ -6,7 +6,7 @@
   position: relative;
 }
 
-section {
+.matchmaking-mobile {
   background-image: url(../images/background-matchmaking.-mobile.jpeg);
   height: 1000px;
 }
