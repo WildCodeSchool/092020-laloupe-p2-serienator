@@ -162,7 +162,10 @@ class SerieForm extends Component {
 }
 
 SerieForm.propTypes = {
-  serieSearch: PropTypes.number.isRequired,
+  serieSearch: PropTypes.shape({
+    idS1: PropTypes.number,
+    idS2: PropTypes.number,
+  }).isRequired,
 };
 
 export default SerieForm;
