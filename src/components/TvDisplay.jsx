@@ -5,8 +5,8 @@ import loadingScreen from "../images/loading-screen.gif";
 import offScreen from "../images/screen-tv-off.jpg";
 import glitchScreen from "../images/screen-tv-glitch800.webp";
 import successScreen from "../images/success.gif";
-import leftCable from "../images/left-cable.png";
-import rightCable from "../images/right-cable.png";
+import leftCable from "../images/left-cable550.png";
+import rightCable from "../images/right-cable550.png";
 
 const screenStep = [offScreen, glitchScreen, loadingScreen, successScreen];
 
