@@ -1,10 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import arrowRounded from "../images/curved-arrow.svg";
 import "./Header.css";
 import BtnsTop from "./BtnsTop";
 import SerieForm from "./SerieForm";
 
-function Header() {
+function Header(props) {
+  const { serieSearch } = props;
   return (
     <header className="header">
       <div className="backgroundHeader">
@@ -18,10 +20,14 @@ function Header() {
           faille !
         </h2>
         <img className="arrowRounded" alt="arrowRounded" src={arrowRounded} />
-        <SerieForm />
+        <SerieForm serieSearch={serieSearch} />
       </div>
     </header>
   );
 }
+
+Header.propTypes = {
+  serieSearch: PropTypes.number.isRequired,
+};
 
 export default Header;

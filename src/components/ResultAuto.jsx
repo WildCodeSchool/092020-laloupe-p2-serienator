@@ -9,7 +9,9 @@ function ResultAuto({ posterPath, name, handleClick, id }) {
       className="container-ResultAuto"
       onClick={() => handleClick(id)}
     >
-      <img src={posterPath} alt={name} />
+      <div className="container-img">
+        <img src={posterPath} alt={name} />
+      </div>
       <p>{name}</p>
     </button>
   );

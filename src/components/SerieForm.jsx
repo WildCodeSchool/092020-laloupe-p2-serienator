@@ -1,23 +1,18 @@
 import React, { Component } from "react";
 import "./SerieForm.css";
+import axios from "axios";
+import PropTypes from "prop-types";
+import ResultAuto from "./ResultAuto";
+import testPatern from "../images/test-pattern-152459_960_720.webp";
 
-const casaDelPapel = {
-  genre: "action",
-  id: "1",
-  title: "Casa",
-};
-
+const baseImg = "https://image.tmdb.org/t/p/w92";
 const placeHolderInit = [
   "Entre ta 1ère Série",
   "Entre ta 2ème Série",
   "cliquer sur Réinitialiser pour réessayer",
 ];
-
 const buttonTextInit = ["1ère Série", "2ème Série", "Réinitialiser"];
 const buttonClassInit = ["Btnserie1", "Btnserie2", "Btnserie1"];
-
-// const serie2 = {genre: "", id: "", title: ""};
-
 const disabledInit = [false, false, "disabled"];
 
 class SerieForm extends Component {
@@ -31,21 +26,51 @@ class SerieForm extends Component {
       buttonText: buttonTextInit[0],
       buttonClass: buttonClassInit[0],
       placeHolder: placeHolderInit[0],
-      serie1: { genre: "", id: "", title: "" },
-      // serie2: serie2,
+      resultSearch: [],
+      idS: 0,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
+  componentDidUpdate(prevProps, prevState) {
+    const { inputValue, idS } = this.state;
+    if (prevState.inputValue !== inputValue && idS === 0) {
+      this.apiCall();
+    }
+  }
+
+  apiCall = () => {
+    const { inputValue } = this.state;
+    const researchAPI =
+      "https://api.themoviedb.org/3/search/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&page=1&include_adult=false&query=";
+
+    if (inputValue.length > 0) {
+      axios
+        .get(researchAPI + inputValue)
+        .then((response) => response.data)
+        .then((data) => {
+          this.setState({ resultSearch: data.results });
+        });
+    } else {
+      this.setState({ resultSearch: [] });
+    }
+  };
+
+  handleSubmit = (event) => {
     event.preventDefault();
-    const { counter, inputValue, serie1 } = this.state;
+    const { counter, inputValue, idS } = this.state;
+    const { serieSearch } = this.props;
 
     if (counter < 3) {
-      if (inputValue === casaDelPapel.title) {
-        console.log(inputValue);
+      if (idS !== 0 && inputValue.length >= 1) {
         const newCounter = counter + 1;
+        if (counter === 1) {
+          serieSearch.idS1 = idS;
+        } else if (counter === 2) {
+          serieSearch.idS2 = idS;
+        } else if (counter === 3) {
+          serieSearch.idS1 = 0;
+          serieSearch.idS2 = 0;
+        }
         this.setState({
           counter: newCounter,
           error: "",
@@ -54,11 +79,8 @@ class SerieForm extends Component {
           buttonClass: buttonClassInit[counter],
           placeHolder: placeHolderInit[counter],
           inputValue: "",
-          serie1: casaDelPapel,
         });
-        console.log(serie1);
       } else {
-        console.log("il y a erreur");
         this.setState({ error: "Ooooops" });
       }
     } else {
@@ -71,14 +93,23 @@ class SerieForm extends Component {
         buttonClass: buttonClassInit[newCounter],
         placeHolder: placeHolderInit[newCounter],
         inputValue: "",
-        serie1,
       });
     }
-  }
+  };
 
-  handleChange(event) {
-    this.setState({ inputValue: event.target.value, error: "" });
-  }
+  handleChange = (event) => {
+    this.setState({ inputValue: event.target.value, error: "", idS: 0 });
+  };
+
+  handleClick = (findId) => {
+    const { resultSearch } = this.state;
+    const eureka = resultSearch[findId].name;
+    this.setState({
+      inputValue: eureka,
+      idS: resultSearch[findId].id,
+      resultSearch: [],
+    });
+  };
 
   render() {
     const {
@@ -88,8 +119,9 @@ class SerieForm extends Component {
       disabled,
       buttonClass,
       buttonText,
+      resultSearch,
     } = this.state;
-    const { handleChange, handleSubmit } = this;
+    const { handleChange, handleSubmit, handleClick } = this;
     return (
       <form className="SerieForm2">
         <div className="Error">
@@ -109,20 +141,28 @@ class SerieForm extends Component {
             {buttonText}
           </button>
         </div>
+        <ul className="containerAutosuggest">
+          {resultSearch.map((resultat, index) => (
+            <ResultAuto
+              key={resultat.id}
+              posterPath={
+                resultat.poster_path
+                  ? baseImg + resultat.poster_path
+                  : testPatern
+              }
+              name={resultat.name}
+              handleClick={handleClick}
+              id={index}
+            />
+          ))}
+        </ul>
       </form>
     );
   }
 }
 
-// SerieForm.propTypes = {
-//   this.state.error: PropTypes.string.isRequired,
-//   this.state.disabled: PropTypes.bool.isRequired,
-//   this.state.buttonText: PropTypes.string.isRequired,
-//   this.state.buttonClass: PropTypes.string.isRequired,
-//   this.state.placeHolder: PropTypes.string.isRequired,
-//   this.state.inputValue: PropTypes.string.isRequired,
-//   this.state.handleClick: PropTypes.func.isRequired,
-//   this.state.handleChange: PropTypes.func.isRequired,
-// };
+SerieForm.propTypes = {
+  serieSearch: PropTypes.number.isRequired,
+};
 
 export default SerieForm;
