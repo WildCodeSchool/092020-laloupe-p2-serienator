@@ -16,7 +16,6 @@ class Autosuggest extends React.Component {
     const { title, idS } = this.state;
     if (prevState.title !== title && idS === 0) {
       this.apiCall();
-      console.log(idS);
     }
   }
 
