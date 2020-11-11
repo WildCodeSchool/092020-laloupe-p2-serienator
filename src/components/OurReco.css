@@ -1,0 +1,19 @@
+.display-OurReco {
+  display: block;
+  padding: 30px 0;
+  background-image: url(../images/background-top.jpeg);
+  background-size: 100% 100%;
+  background-position: bottom;
+  flex-wrap: nowrap;
+}
+
+.subtitle-OurReco {
+  text-align: center;
+  font-size: 20px;
+}
+
+.map-OurReco {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+}

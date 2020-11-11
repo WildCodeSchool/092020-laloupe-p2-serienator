@@ -1,0 +1,15 @@
+.cards-MapReco {
+  width: 200px;
+}
+
+.cards-MapReco img {
+  border-radius: 10px;
+}
+
+.cards-MapReco:hover {
+  cursor: pointer;
+}
+
+.year-MapReco {
+  font-size: 16px;
+}
