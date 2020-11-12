@@ -1,4 +1,5 @@
 import React from "react";
+import MatchmakingMobile from "./components/MatchmakingMobile";
 import Matchmaking from "./components/Matchmaking";
 import Header from "./components/Header";
 import NosReco from "./components/NosReco";
@@ -24,6 +25,7 @@ class App extends React.Component {
         <Matchmaking />
         <NosReco />
         <FicheTech />
+        <MatchmakingMobile serieSearch={serieSearch} />
       </div>
     );
   }
