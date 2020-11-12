@@ -1,3 +1,7 @@
+.serie-select {
+  position: absolute;
+}
+
 .form-Autosuggest {
   display: flex;
   flex-direction: column;

@@ -1,15 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
+import Autosuggest from "./Autosuggest";
 import CardsMobile from "./CardsMobile";
 import "./MatchmakingMobile.css";
-import Search from "./Search";
+
+// import Search from "./Search";
 
 class MatchmakingMobile extends React.Component {
   constructor() {
     super();
     this.state = {
       isOpen: false,
-      // cardOne:{src:"", alt:""},
-      // cardTwo:{src:"",alt:""}
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -20,6 +21,7 @@ class MatchmakingMobile extends React.Component {
   }
 
   render() {
+    const { serieSearch } = this.props;
     const { isOpen } = this.state;
     const { handleClick } = this;
     return (
@@ -30,11 +32,16 @@ class MatchmakingMobile extends React.Component {
         <div className="mobile-position">
           <CardsMobile handleClick={handleClick} />
           <CardsMobile handleClick={handleClick} />
-          {isOpen && <Search />}
+          {isOpen && <Autosuggest serieSearch={serieSearch} />}
         </div>
       </section>
     );
   }
 }
-
+MatchmakingMobile.propTypes = {
+  serieSearch: PropTypes.shape({
+    idS1: PropTypes.number,
+    idS2: PropTypes.number,
+  }).isRequired,
+};
 export default MatchmakingMobile;

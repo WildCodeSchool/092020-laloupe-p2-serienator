@@ -25,7 +25,7 @@ class App extends React.Component {
         <Matchmaking />
         <NosReco />
         <FicheTech />
-        <MatchmakingMobile />
+        <MatchmakingMobile serieSearch={serieSearch} />
       </div>
     );
   }
