@@ -4,8 +4,6 @@ import Autosuggest from "./Autosuggest";
 import CardsMobile from "./CardsMobile";
 import "./MatchmakingMobile.css";
 
-// import Search from "./Search";
-
 class MatchmakingMobile extends React.Component {
   constructor() {
     super();
