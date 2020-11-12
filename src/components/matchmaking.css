@@ -92,6 +92,12 @@
   }
 }
 
+@media screen and (max-width: 769px) {
+  .matchmaking {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .cable {
     display: none;

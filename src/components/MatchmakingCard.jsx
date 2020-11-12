@@ -11,7 +11,10 @@ function MatchmakingCard({ card }) {
 }
 
 MatchmakingCard.propTypes = {
-  card: PropTypes.objectOf(PropTypes.object).isRequired,
+  card: PropTypes.shape({
+    poster_path: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
 };
 
 export default MatchmakingCard;

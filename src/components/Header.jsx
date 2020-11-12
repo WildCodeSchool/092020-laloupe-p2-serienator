@@ -6,7 +6,21 @@ import BtnsTop from "./BtnsTop";
 import SerieForm from "./SerieForm";
 
 function Header(props) {
-  const { serieSearch } = props;
+  const {
+    serieSearch,
+    counter,
+    placeHolder,
+    error,
+    inputValue,
+    serie,
+    disabled,
+    buttonClass,
+    buttonText,
+    resultSearch,
+    handleSubmit,
+    handleChange,
+    handleClick,
+  } = props;
   return (
     <header className="header">
       <div className="backgroundHeader">
@@ -20,17 +34,48 @@ function Header(props) {
           faille !
         </h2>
         <img className="arrowRounded" alt="arrowRounded" src={arrowRounded} />
-        <SerieForm serieSearch={serieSearch} />
+        <SerieForm
+          serieSearch={serieSearch}
+          counter={counter}
+          placeHolder={placeHolder}
+          error={error}
+          inputValue={inputValue}
+          disabled={disabled}
+          buttonClass={buttonClass}
+          buttonText={buttonText}
+          resultSearch={resultSearch}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          serie={serie}
+          handleClick={handleClick}
+        />
       </div>
     </header>
   );
 }
 
 Header.propTypes = {
-  serieSearch: PropTypes.shape({
-    idS1: PropTypes.number,
-    idS2: PropTypes.number,
+  serieSearch: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  ).isRequired,
+  resultSearch: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  ).isRequired,
+  counter: PropTypes.shape({ n: PropTypes.number }).isRequired,
+  serie: PropTypes.shape({
+    idS: PropTypes.number,
+    poster_path: PropTypes.string,
+    name: PropTypes.string,
   }).isRequired,
+  placeHolder: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+  inputValue: PropTypes.string.isRequired,
+  disabled: PropTypes.string.isRequired,
+  buttonClass: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Header;
