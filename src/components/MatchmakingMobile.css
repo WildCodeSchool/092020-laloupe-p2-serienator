@@ -8,9 +8,10 @@ section.matchmaking-mobile {
   .mobile-position {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     position: relative;
+    padding-left: 15px;
   }
 
   .matchmaking-mobile {
