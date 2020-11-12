@@ -24,7 +24,9 @@ class MatchmakingMobile extends React.Component {
     const { handleClick } = this;
     return (
       <section className="matchmaking-mobile">
-        <h2>Ajouter une série en cliquant sur une carte</h2>
+        <h2 className="matchmaking-mobile">
+          Ajouter une série en cliquant sur une carte
+        </h2>
         <div className="mobile-position">
           <CardsMobile handleClick={handleClick} />
           <CardsMobile handleClick={handleClick} />

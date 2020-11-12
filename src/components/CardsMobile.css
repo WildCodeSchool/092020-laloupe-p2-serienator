@@ -1,27 +1,34 @@
 .cards-mobile {
-  width: 90%;
-  height: 250px;
-  background-color: #044183;
-  border: 1px solid #044183;
-  border-radius: 10px;
+  display: none;
 }
 
-img.qmark {
-  width: 100%;
-  height: 250px;
-  background-color: #01356d;
-  border-radius: 10px;
-}
+@media screen and (max-width: 769px) {
+  .cards-mobile {
+    display: block;
+    width: 90%;
+    height: 250px;
+    background-color: #044183;
+    border: 1px solid #044183;
+    border-radius: 10px;
+  }
 
-/*  Barre de recherche  */
+  img.qmark {
+    width: 100%;
+    height: 250px;
+    background-color: #01356d;
+    border-radius: 10px;
+  }
 
-input.toggle-search {
-  opacity: 0;
-  width: 100%;
-  height: 250px;
-}
+  /*  Barre de recherche  */
 
-input.toggle-search:checked {
-  display: block;
-  background-color: #01356d;
+  input.toggle-search {
+    opacity: 0;
+    width: 100%;
+    height: 250px;
+  }
+
+  input.toggle-search:checked {
+    display: block;
+    background-color: #01356d;
+  }
 }
