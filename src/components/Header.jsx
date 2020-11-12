@@ -10,13 +10,13 @@ function Header() {
       <div className="backgroundHeader">
         <BtnsTop />
         <h1 className="titre">Bienvenue sur Serienator,</h1>
-        <h2 className="soustitre">
+        <p className="soustitre">
           Le robot de Match-Making de séries TV le plus performant du Web.
-        </h2>
-        <h2 className="soustitre">
+        </p>
+        <p className="soustitre">
           Donnez lui 2 séries dès maintenant, ses recommandations seront sans
           faille !
-        </h2>
+        </p>
         <img className="arrowRounded" alt="arrowRounded" src={arrowRounded} />
         <SerieForm />
       </div>
