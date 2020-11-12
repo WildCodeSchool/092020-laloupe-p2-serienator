@@ -10,6 +10,7 @@ function CardsMobile(props) {
       handleClick();
     }
   };
+
   return (
     <div>
       <div

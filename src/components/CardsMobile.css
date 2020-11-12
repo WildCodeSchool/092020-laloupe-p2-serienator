@@ -32,3 +32,13 @@
     background-color: #01356d;
   }
 }
+
+.grayscale {
+  display: block;
+  width: 90%;
+  height: 250px;
+  background-color: #044183;
+  border: 1px solid #044183;
+  border-radius: 10px;
+  filter: grayscale(100%);
+}
