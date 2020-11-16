@@ -25,6 +25,7 @@
 
 .matchmaking-card {
   display: flex;
+  min-width: 200px;
   width: 200px;
   height: 300px;
   border-radius: 15px;
@@ -46,15 +47,15 @@
 }
 
 .tv-component .cable {
-  /* max-width: 200px; */
+  max-width: 600px;
   z-index: 0;
 }
 
 .tv-component .cable img {
   position: relative;
-  top: 50%;
-  left: -20%;
-  width: 140%;
+  top: 30%;
+  left: -10%;
+  width: 120%;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -79,19 +80,25 @@
   position: absolute;
   padding: 10px;
   top: 0;
-  left: 5px;
+  left: 0;
   width: 200px;
   height: 175px;
   z-index: 0;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 870px) {
   .tv-component {
     display: none;
   }
 }
 
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 769px) {
+  .matchmaking {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
   .cable {
     display: none;
   }

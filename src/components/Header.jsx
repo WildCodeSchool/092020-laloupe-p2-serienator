@@ -6,7 +6,18 @@ import BtnsTop from "./BtnsTop";
 import SerieForm from "./SerieForm";
 
 function Header(props) {
-  const { serieSearch } = props;
+  const {
+    placeHolder,
+    inputValue,
+    error,
+    disabled,
+    buttonClass,
+    buttonText,
+    resultSearch,
+    handleChange,
+    handleSubmit,
+    handleClick,
+  } = props;
   return (
     <header className="header">
       <div className="backgroundHeader">
@@ -20,17 +31,36 @@ function Header(props) {
           faille !
         </p>
         <img className="arrowRounded" alt="arrowRounded" src={arrowRounded} />
-        <SerieForm serieSearch={serieSearch} />
+        <SerieForm
+          placeHolder={placeHolder}
+          inputValue={inputValue}
+          disabled={disabled}
+          error={error}
+          buttonClass={buttonClass}
+          buttonText={buttonText}
+          resultSearch={resultSearch}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          handleClick={handleClick}
+        />
       </div>
     </header>
   );
 }
 
 Header.propTypes = {
-  serieSearch: PropTypes.shape({
-    idS1: PropTypes.number,
-    idS2: PropTypes.number,
-  }).isRequired,
+  resultSearch: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  ).isRequired,
+  placeHolder: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+  inputValue: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  buttonClass: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Header;
