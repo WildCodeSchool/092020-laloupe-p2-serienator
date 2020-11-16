@@ -2,7 +2,7 @@
   display: flex;
   justify-content: end;
   flex-direction: row;
-  z-index: 3000;
+  z-index: 8000;
 }
 
 .btnChance {

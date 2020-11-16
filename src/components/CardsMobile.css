@@ -1,0 +1,34 @@
+.cards-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 769px) {
+  .cards-mobile {
+    display: block;
+    width: 90%;
+    height: 250px;
+    background-color: #044183;
+    border: 1px solid #044183;
+    border-radius: 10px;
+  }
+
+  img.qmark {
+    width: 100%;
+    height: 250px;
+    background-color: #01356d;
+    border-radius: 10px;
+  }
+
+  /*  Barre de recherche  */
+
+  input.toggle-search {
+    opacity: 0;
+    width: 100%;
+    height: 250px;
+  }
+
+  input.toggle-search:checked {
+    display: block;
+    background-color: #01356d;
+  }
+}
