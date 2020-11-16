@@ -54,6 +54,7 @@ class App extends React.Component {
           keywords: "",
         },
       ],
+      recoSeries: [],
       counter: 0,
       screen: offScreen,
       error: "",
@@ -128,6 +129,7 @@ class App extends React.Component {
         } else if (counter === 1) {
           serieSearch[1] = serie;
           serieSearch[1].keywords = keywords;
+          this.algoMatchmaking();
         }
         const newCounter = counter + 1;
         this.setState({
@@ -182,6 +184,7 @@ class App extends React.Component {
           keywords: "",
         },
         keywords: "",
+        recoSeries: [],
         error: "",
         disabled: disabledInit[newCounter],
         buttonText: buttonTextInit[newCounter],
@@ -205,6 +208,29 @@ class App extends React.Component {
         });
         const keywordString = keywords.join("||");
         this.setState({ keywords: keywordString });
+      });
+  };
+
+  algoMatchmaking = () => {
+    const { serieSearch, recoSeries } = this.state;
+    axios
+      .get(
+        `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${serieSearch[0].keywords}||${serieSearch[1].keywords}&with_genres=${serieSearch[0].genres}||${serieSearch[1].genres}&with_original_language=${serieSearch[0].original_language}||${serieSearch[1].original_language}&vote_count.gte=100`
+      )
+      .then((res) => {
+        const recommandedSeries = [];
+        const { results } = res.data;
+        for (let i = 0; i < results.length; i += 1) {
+          if (
+            results[i].id === serieSearch[0].idS ||
+            results[i].id === serieSearch[1].idS
+          ) {
+            results.splice(i, 1);
+          }
+        }
+        recoSeries.push(results.splice(0, 5));
+        this.setState({ recoSeries: recommandedSeries });
+        console.log(recoSeries);
       });
   };
 
