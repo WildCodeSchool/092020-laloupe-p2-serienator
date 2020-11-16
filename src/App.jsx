@@ -32,22 +32,29 @@ class App extends React.Component {
         idS: 0,
         poster_path: "",
         name: "",
+        genres: "",
+        original_language: "",
+        keywords: "",
       },
       serieSearch: [
         {
           idS: 0,
           poster_path: imgDefault,
           name: "question mark card",
+          genres: "",
+          original_language: "",
+          keywords: "",
         },
         {
           idS: 0,
           poster_path: imgDefault,
           name: "question mark card",
+          genres: "",
+          original_language: "",
+          keywords: "",
         },
       ],
-      counter: {
-        n: 0,
-      },
+      counter: 0,
       screen: offScreen,
       error: "",
       inputValue: "",
@@ -87,75 +94,96 @@ class App extends React.Component {
     const { resultSearch } = this.state;
     const eureka = resultSearch[findId].name;
     const poster = baseImg + resultSearch[findId].poster_path;
+    const genreString = resultSearch[findId].genre_ids.join("||");
     this.setState({
       inputValue: eureka,
       serie: {
         idS: resultSearch[findId].id,
         poster_path: poster,
         name: resultSearch[findId].name,
+        original_language: resultSearch[findId].original_language,
+        genres: genreString,
       },
       resultSearch: [],
     });
   };
 
   handleChange = (event) => {
-    this.setState({ inputValue: event.target.value, error: "", idS: 0 });
+    this.setState({
+      inputValue: event.target.value,
+      error: "",
+      serie: { idS: 0 },
+    });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     const { inputValue, serie, serieSearch, counter } = this.state;
-    if (counter.n < 2) {
+    if (counter < 2) {
       if (serie.idS !== 0 && inputValue.length >= 1) {
-        if (counter.n === 0) {
+        if (counter === 0) {
           serieSearch[0] = serie;
-        } else if (counter.n === 1) {
+        } else if (counter === 1) {
           serieSearch[1] = serie;
         }
-        counter.n += 1;
+        const newCounter = counter + 1;
         this.setState({
+          counter: newCounter,
           serie: {
             idS: 0,
             poster_path: "",
             name: "",
+            genres: "",
+            original_language: "",
+            keywords: "",
           },
           error: "",
-          disabled: disabledInit[counter.n],
-          buttonText: buttonTextInit[counter.n],
-          buttonClass: buttonClassInit[counter.n],
-          placeHolder: placeHolderInit[counter.n],
-          screen: screenStep[counter.n],
+          disabled: disabledInit[newCounter],
+          buttonText: buttonTextInit[newCounter],
+          buttonClass: buttonClassInit[newCounter],
+          placeHolder: placeHolderInit[newCounter],
+          screen: screenStep[newCounter],
           inputValue: "",
         });
       } else {
         this.setState({ error: "Ooooops" });
       }
     } else {
-      counter.n = 0;
+      const newCounter = 0;
       this.setState({
+        counter: newCounter,
         serieSearch: [
           {
             idS: 0,
             poster_path: imgDefault,
             name: "question mark card",
+            genres: "",
+            original_language: "",
+            keywords: "",
           },
           {
             idS: 0,
             poster_path: imgDefault,
             name: "question mark card",
+            genres: "",
+            original_language: "",
+            keywords: "",
           },
         ],
         serie: {
           idS: 0,
           poster_path: "",
           name: "",
+          genres: "",
+          original_language: "",
+          keywords: "",
         },
         error: "",
-        disabled: disabledInit[counter.n],
-        buttonText: buttonTextInit[counter.n],
-        buttonClass: buttonClassInit[counter.n],
-        placeHolder: placeHolderInit[counter.n],
-        screen: screenStep[counter.n],
+        disabled: disabledInit[newCounter],
+        buttonText: buttonTextInit[newCounter],
+        buttonClass: buttonClassInit[newCounter],
+        placeHolder: placeHolderInit[newCounter],
+        screen: screenStep[newCounter],
         inputValue: "",
       });
     }
@@ -163,29 +191,24 @@ class App extends React.Component {
 
   render() {
     const {
-      serieSearch,
-      counter,
-      screen,
       placeHolder,
-      error,
       inputValue,
+      error,
       disabled,
       buttonClass,
-      idS,
       buttonText,
       resultSearch,
+      screen,
+      serieSearch,
     } = this.state;
     return (
       <div>
         <Header
-          serieSearch={serieSearch}
-          counter={counter}
           placeHolder={placeHolder}
-          error={error}
           inputValue={inputValue}
+          error={error}
           disabled={disabled}
           buttonClass={buttonClass}
-          idS={idS}
           buttonText={buttonText}
           resultSearch={resultSearch}
           handleChange={this.handleChange}

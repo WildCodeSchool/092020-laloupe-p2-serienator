@@ -33,7 +33,6 @@ class Lucky extends React.Component {
 
   render() {
     const { series } = this.state;
-    console.log("Serie : ", series);
     return (
       <>
         <div className="LuckySection">
