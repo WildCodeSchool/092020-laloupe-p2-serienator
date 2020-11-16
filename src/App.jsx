@@ -1,7 +1,6 @@
 import React from "react";
 import Matchmaking from "./components/Matchmaking";
 import Header from "./components/Header";
-import FicheTech from "./components/FicheTech";
 import OurReco from "./components/OurReco";
 import "./App.css";
 
@@ -23,7 +22,6 @@ class App extends React.Component {
         <Header serieSearch={serieSearch} />
         <Matchmaking />
         <OurReco />
-        <FicheTech />
       </div>
     );
   }

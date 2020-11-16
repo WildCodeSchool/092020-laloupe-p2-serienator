@@ -2,6 +2,7 @@ import React from "react";
 import MapReco from "./MapReco";
 import testPatern from "../images/test-pattern-152459_960_720.webp";
 import "./OurReco.css";
+import FicheTech from "./FicheTech";
 
 const baseImg = "https://image.tmdb.org/t/p/w200";
 
@@ -82,33 +83,60 @@ const series = [
     overview:
       "En 1953, un jeune vicaire fait équipe avec un inspecteur de police pour résoudre des crimes dans la ville de Grantchester, située dans le comté de Cambridgeshire en Angleterre. Petit à petit, les deux hommes se lient d'amitié, tout en s'apportant mutuellement dans le travail.",
     poster_path: "/8pt9v09r85ZzI6g8ggYDAf92t58.jpg",
-    vote_average: 7.4,
+    vote_average: 4,
     vote_count: 62,
     popularity: 9.183,
   },
 ];
 
-function OurReco() {
-  return (
-    <section className="display-OurReco">
-      <div>
-        <h2>Voici nos recommandations</h2>
-        <p className="subtitle-OurReco">Les avez-vous déjà vues ?</p>
-      </div>
-      <div className="map-OurReco">
-        {series.map((serie) => (
-          <MapReco
-            key={serie.id}
-            posterPath={
-              serie.poster_path ? baseImg + serie.poster_path : testPatern
-            }
-            name={serie.name}
-            year={serie.first_air_date.substr(0, 4)}
-          />
-        ))}
-      </div>
-    </section>
-  );
+class OurReco extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+      idKey: 0,
+      resultat: series,
+    };
+  }
+
+  handleClick = (index) => {
+    this.setState({
+      idKey: index,
+      isLoading: true,
+    });
+  };
+
+  render() {
+    const { handleClick } = this;
+    const { idKey, isLoading, resultat } = this.state;
+    return (
+      <section className="display-OurReco">
+        <div>
+          <h2>Voici nos recommandations</h2>
+          <p className="subtitle-OurReco">Les avez-vous déjà vues ?</p>
+        </div>
+        <div className="map-OurReco">
+          {resultat.map((serie, index) => (
+            <button
+              type="button"
+              className="btn-OurReco"
+              onClick={() => handleClick(index)}
+            >
+              <MapReco
+                posterPath={
+                  serie.poster_path ? baseImg + serie.poster_path : testPatern
+                }
+                name={serie.name}
+                year={serie.first_air_date.substr(0, 4)}
+                key={serie.id}
+              />
+            </button>
+          ))}
+        </div>
+        {isLoading ? <FicheTech resultat={resultat} idKey={idKey} /> : <></>}
+      </section>
+    );
+  }
 }
 
 export default OurReco;
