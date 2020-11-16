@@ -59,16 +59,10 @@ SerieForm.propTypes = {
   resultSearch: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ).isRequired,
-  counter: PropTypes.shape({ n: PropTypes.number }).isRequired,
-  serie: PropTypes.shape({
-    idS: PropTypes.number,
-    poster_path: PropTypes.string,
-    name: PropTypes.string,
-  }).isRequired,
   placeHolder: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
-  disabled: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
   buttonClass: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
