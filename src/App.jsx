@@ -34,8 +34,8 @@ class App extends React.Component {
         name: "",
         genres: "",
         original_language: "",
-        keywords: "",
       },
+      keywords: "",
       serieSearch: [
         {
           idS: 0,
@@ -95,6 +95,7 @@ class App extends React.Component {
     const eureka = resultSearch[findId].name;
     const poster = baseImg + resultSearch[findId].poster_path;
     const genreString = resultSearch[findId].genre_ids.join("||");
+    this.getKeywords(resultSearch[findId].id);
     this.setState({
       inputValue: eureka,
       serie: {
@@ -118,13 +119,15 @@ class App extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { inputValue, serie, serieSearch, counter } = this.state;
+    const { inputValue, serie, serieSearch, counter, keywords } = this.state;
     if (counter < 2) {
       if (serie.idS !== 0 && inputValue.length >= 1) {
         if (counter === 0) {
           serieSearch[0] = serie;
+          serieSearch[0].keywords = keywords;
         } else if (counter === 1) {
           serieSearch[1] = serie;
+          serieSearch[1].keywords = keywords;
         }
         const newCounter = counter + 1;
         this.setState({
@@ -135,8 +138,8 @@ class App extends React.Component {
             name: "",
             genres: "",
             original_language: "",
-            keywords: "",
           },
+          keywords: "",
           error: "",
           disabled: disabledInit[newCounter],
           buttonText: buttonTextInit[newCounter],
@@ -178,6 +181,7 @@ class App extends React.Component {
           original_language: "",
           keywords: "",
         },
+        keywords: "",
         error: "",
         disabled: disabledInit[newCounter],
         buttonText: buttonTextInit[newCounter],
@@ -187,6 +191,21 @@ class App extends React.Component {
         inputValue: "",
       });
     }
+  };
+
+  getKeywords = (id) => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/tv/${id}/keywords?api_key=590e90c03c55c8852b1ed2de7215607f`
+      )
+      .then((res) => res.data)
+      .then((data) => {
+        const keywords = data.results.map((keyword) => {
+          return keyword.id;
+        });
+        const keywordString = keywords.join("||");
+        this.setState({ keywords: keywordString });
+      });
   };
 
   render() {
