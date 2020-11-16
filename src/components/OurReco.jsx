@@ -120,6 +120,7 @@ class OurReco extends React.Component {
             <button
               type="button"
               className="btn-OurReco"
+              key={serie.id}
               onClick={() => handleClick(index)}
             >
               <MapReco
