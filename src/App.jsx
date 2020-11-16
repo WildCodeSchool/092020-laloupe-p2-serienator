@@ -1,9 +1,11 @@
 import React from "react";
 import axios from "axios";
+import MatchmakingMobile from "./components/MatchmakingMobile";
 import Matchmaking from "./components/Matchmaking";
 import Header from "./components/Header";
 import NosReco from "./components/NosReco";
 import FicheTech from "./components/FicheTech";
+import Lucky from "./components/Lucky";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
 import loadingScreen from "./images/loading-screen.gif";
@@ -12,7 +14,6 @@ import glitchScreen from "./images/screen-tv-glitch800.webp";
 import successScreen from "./images/success.gif";
 
 const baseImg = "https://image.tmdb.org/t/p/w200";
-
 const placeHolderInit = [
   "Entre ta 1ère Série",
   "Entre ta 2ème Série",
@@ -21,7 +22,6 @@ const placeHolderInit = [
 const buttonTextInit = ["1ère Série", "2ème Série", "Réinitialiser"];
 const buttonClassInit = ["Btnserie1", "Btnserie2", "Btnserie1"];
 const disabledInit = [false, false, "disabled"];
-
 const screenStep = [offScreen, glitchScreen, loadingScreen, successScreen];
 
 class App extends React.Component {
@@ -83,6 +83,25 @@ class App extends React.Component {
     }
   };
 
+  handleClick = (findId) => {
+    const { resultSearch } = this.state;
+    const eureka = resultSearch[findId].name;
+    const poster = baseImg + resultSearch[findId].poster_path;
+    this.setState({
+      inputValue: eureka,
+      serie: {
+        idS: resultSearch[findId].id,
+        poster_path: poster,
+        name: resultSearch[findId].name,
+      },
+      resultSearch: [],
+    });
+  };
+
+  handleChange = (event) => {
+    this.setState({ inputValue: event.target.value, error: "", idS: 0 });
+  };
+
   handleSubmit = (event) => {
     event.preventDefault();
     const { inputValue, serie, serieSearch, counter } = this.state;
@@ -142,25 +161,6 @@ class App extends React.Component {
     }
   };
 
-  handleChange = (event) => {
-    this.setState({ inputValue: event.target.value, error: "", idS: 0 });
-  };
-
-  handleClick = (findId) => {
-    const { resultSearch } = this.state;
-    const eureka = resultSearch[findId].name;
-    const poster = baseImg + resultSearch[findId].poster_path;
-    this.setState({
-      inputValue: eureka,
-      serie: {
-        idS: resultSearch[findId].id,
-        poster_path: poster,
-        name: resultSearch[findId].name,
-      },
-      resultSearch: [],
-    });
-  };
-
   render() {
     const {
       serieSearch,
@@ -193,8 +193,10 @@ class App extends React.Component {
           handleClick={this.handleClick}
         />
         <Matchmaking screen={screen} serieSearch={serieSearch} />
+        <Lucky />
         <NosReco />
         <FicheTech />
+        <MatchmakingMobile serieSearch={serieSearch} />
       </div>
     );
   }

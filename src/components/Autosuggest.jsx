@@ -1,15 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import ResultAuto from "./ResultAuto";
 import "./Autosuggest.css";
 import testPatern from "../images/test-pattern-152459_960_720.webp";
 
 const baseImg = "https://image.tmdb.org/t/p/w92";
+const placeHolderInit = [
+  "Entre ta 1ère Série",
+  "Entre ta 2ème Série",
+  "cliquer sur Réinitialiser pour réessayer",
+];
 
 class Autosuggest extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { title: "", resultSearch: [], idS: 0 };
+    this.state = {
+      title: "",
+      resultSearch: [],
+      idS: 0,
+      counter: 1,
+      placeHolder: placeHolderInit[0],
+    };
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -43,6 +55,37 @@ class Autosuggest extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    const { counter, title, idS } = this.state;
+    const { serieSearch } = this.props;
+    if (counter < 3) {
+      if (idS !== 0 && title.length >= 1) {
+        const newCounter = counter + 1;
+        if (counter === 1) {
+          serieSearch.idS1 = idS;
+        } else if (counter === 2) {
+          serieSearch.idS2 = idS;
+        } else if (counter === 3) {
+          serieSearch.idS1 = 0;
+          serieSearch.idS2 = 0;
+        }
+        this.setState({
+          counter: newCounter,
+          error: "",
+          placeHolder: placeHolderInit[counter],
+          title: "",
+        });
+      } else {
+        this.setState({ error: "Ooooops" });
+      }
+    } else {
+      const newCounter = 0;
+      this.setState({
+        counter: newCounter + 1,
+        error: "",
+        placeHolder: placeHolderInit[newCounter],
+        title: "",
+      });
+    }
   };
 
   handleClick = (findId) => {
@@ -57,13 +100,15 @@ class Autosuggest extends React.Component {
   };
 
   render() {
-    const { title, resultSearch } = this.state;
+    const { title, resultSearch, placeHolder, error } = this.state;
     const { handleSubmit, handleChange, handleClick } = this;
+
     return (
-      <div>
+      <div className="serie-select">
         <form onSubmit={handleSubmit} className="form-Autosuggest">
           <label htmlFor="title">
             <input
+              placeholder={placeHolder}
               id="title"
               name="title"
               type="text"
@@ -71,6 +116,7 @@ class Autosuggest extends React.Component {
               onChange={handleChange}
             />
           </label>
+          <p>{error}</p>
           <ul className="container-Autosuggest">
             {resultSearch.map((resultat, index) => (
               <ResultAuto
@@ -91,5 +137,10 @@ class Autosuggest extends React.Component {
     );
   }
 }
-
+Autosuggest.propTypes = {
+  serieSearch: PropTypes.shape({
+    idS1: PropTypes.number,
+    idS2: PropTypes.number,
+  }).isRequired,
+};
 export default Autosuggest;
