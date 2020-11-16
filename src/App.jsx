@@ -3,8 +3,7 @@ import axios from "axios";
 import MatchmakingMobile from "./components/MatchmakingMobile";
 import Matchmaking from "./components/Matchmaking";
 import Header from "./components/Header";
-import NosReco from "./components/NosReco";
-import FicheTech from "./components/FicheTech";
+import OurReco from "./components/OurReco";
 import Lucky from "./components/Lucky";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
@@ -262,8 +261,7 @@ class App extends React.Component {
         />
         <Matchmaking screen={screen} serieSearch={serieSearch} />
         <Lucky />
-        <NosReco />
-        <FicheTech />
+        <OurReco />
         <MatchmakingMobile serieSearch={serieSearch} />
       </div>
     );
