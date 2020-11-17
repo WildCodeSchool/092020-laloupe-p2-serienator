@@ -5,6 +5,7 @@ import Matchmaking from "./components/Matchmaking";
 import Header from "./components/Header";
 import OurReco from "./components/OurReco";
 import Lucky from "./components/Lucky";
+import Footer from "./components/Footer";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
 import loadingScreen from "./images/loading-screen.gif";
@@ -263,6 +264,7 @@ class App extends React.Component {
         <Lucky />
         <OurReco />
         <MatchmakingMobile serieSearch={serieSearch} />
+        <Footer />
       </div>
     );
   }
