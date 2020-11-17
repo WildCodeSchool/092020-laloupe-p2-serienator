@@ -1,10 +1,9 @@
 import React from "react";
 import "./CardsMobile.css";
 import PropTypes from "prop-types";
-import questionMark from "../images/questioncard3.jpeg";
 
 function CardsMobile(props) {
-  const { handleClick } = props;
+  const { handleClick, card } = props;
   const handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       handleClick();
@@ -20,12 +19,19 @@ function CardsMobile(props) {
         role="button"
         tabIndex="0"
       >
-        <img className="qmark" src={questionMark} alt="Sélectionner un série" />
+        <img
+          className="qmark"
+          src={card.poster_path}
+          alt="Sélectionner un série"
+        />
       </div>
     </div>
   );
 }
 CardsMobile.propTypes = {
   handleClick: PropTypes.func.isRequired,
+  card: PropTypes.shape({
+    poster_path: PropTypes.string,
+  }).isRequired,
 };
 export default CardsMobile;

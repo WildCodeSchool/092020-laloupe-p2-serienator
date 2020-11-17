@@ -3,8 +3,13 @@ section.matchmaking-mobile {
 }
 @media screen and (max-width: 769px) {
   section.matchmaking-mobile {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../images/background-matchmaking.-mobile.jpeg);
+    height: 400px;
+    width: 100%;
   }
+
   .mobile-position {
     display: flex;
     flex-direction: row;
@@ -14,14 +19,8 @@ section.matchmaking-mobile {
     padding-left: 15px;
   }
 
-  .matchmaking-mobile {
-    display: block;
-    background-image: url(../images/background-matchmaking.-mobile.jpeg);
-    height: 100px;
-  }
-
-  h2.matchmaking-mobile {
-    padding-bottom: 10px;
+  .matchmaking-mobile h2 {
+    padding: 30px 10px;
     margin-bottom: 0px;
   }
 }
