@@ -135,8 +135,8 @@
   width: 20%;
 }
 
-@media screen and (min-width: 0px) and (max-width: 700px) {
-  .SerieForm {
+@media screen and (max-width: 769px) {
+  .SerieForm2 {
     display: none;
   }
 }

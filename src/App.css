@@ -11,6 +11,11 @@ body {
   color: #01356d;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   font-size: 48px;
   font-family: "Special Elite", cursive;
