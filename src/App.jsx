@@ -211,13 +211,13 @@ class App extends React.Component {
   };
 
   algoMatchmaking = () => {
-    const { serieSearch, recoSeries } = this.state;
+    const { serieSearch } = this.state;
     axios
       .get(
         `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${serieSearch[0].keywords}||${serieSearch[1].keywords}&with_genres=${serieSearch[0].genres}||${serieSearch[1].genres}&with_original_language=${serieSearch[0].original_language}||${serieSearch[1].original_language}&vote_count.gte=100`
       )
       .then((res) => {
-        const recommandedSeries = [];
+        let recommandedSeries = [];
         const { results } = res.data;
         for (let i = 0; i < results.length; i += 1) {
           if (
@@ -227,9 +227,8 @@ class App extends React.Component {
             results.splice(i, 1);
           }
         }
-        recommandedSeries.push(results.splice(0, 5));
+        recommandedSeries = results.splice(0, 5);
         this.setState({ recoSeries: recommandedSeries });
-        console.log(recoSeries);
       });
   };
 
@@ -244,6 +243,7 @@ class App extends React.Component {
       resultSearch,
       screen,
       serieSearch,
+      recoSeries,
     } = this.state;
     return (
       <div className="App">
@@ -272,7 +272,7 @@ class App extends React.Component {
           serieSearch={serieSearch}
         />
         <Lucky />
-        <OurReco />
+        <OurReco recoSeries={recoSeries} />
       </div>
     );
   }
