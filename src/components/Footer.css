@@ -1,0 +1,22 @@
+.footerStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  font-family: "roboto", sans-serif;
+  background: linear-gradient(180deg, #0f69a7, #01356d);
+  color: white;
+  height: 120px;
+}
+.yearStyle {
+  color: yellow;
+}
+.signature {
+  color: white;
+}
+
+@media screen and (min-width: 0px) and (max-width: 769px) {
+  .footerStyle {
+    height: 80px;
+  }
+}
