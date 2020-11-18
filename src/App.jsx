@@ -212,23 +212,51 @@ class App extends React.Component {
 
   algoMatchmaking = () => {
     const { serieSearch } = this.state;
+    let filterGenre = `${serieSearch[0].genres}||${serieSearch[1].genres}`;
+    let filterKeyword = `${serieSearch[0].keywords}||${serieSearch[1].keywords}`;
+    const filterLanguage = `${serieSearch[0].original_language}||${serieSearch[1].original_language}`;
+    if (filterGenre.includes("10762")) {
+      filterGenre = "10762";
+      filterKeyword = "";
+    }
+    if (filterKeyword === "||") {
+      filterKeyword = "";
+    }
+    if (filterGenre === "||") {
+      filterGenre = "";
+    }
+    const url = `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${filterKeyword}&with_genres=${filterGenre}&with_original_language=${filterLanguage}&vote_count.gte=50`;
+    console.log(url);
+    axios.get(url).then((res) => {
+      let recommandedSeries = [];
+      const { results } = res.data;
+      for (let i = 0; i < results.length; i += 1) {
+        if (
+          results[i].id === serieSearch[0].idS ||
+          results[i].id === serieSearch[1].idS
+        ) {
+          results.splice(i, 1);
+        }
+      }
+      recommandedSeries = results.splice(0, 5);
+      this.setState({ recoSeries: recommandedSeries });
+    });
+  };
+
+  getSeries = () => {
+    const indexAleatoirePage = Math.floor(Math.random() * 15 + 1);
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${serieSearch[0].keywords}||${serieSearch[1].keywords}&with_genres=${serieSearch[0].genres}||${serieSearch[1].genres}&with_original_language=${serieSearch[0].original_language}||${serieSearch[1].original_language}&vote_count.gte=100`
+        `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=${indexAleatoirePage}&vote_count.gte=500`
       )
       .then((res) => {
-        let recommandedSeries = [];
+        const randomSeries = [];
         const { results } = res.data;
-        for (let i = 0; i < results.length; i += 1) {
-          if (
-            results[i].id === serieSearch[0].idS ||
-            results[i].id === serieSearch[1].idS
-          ) {
-            results.splice(i, 1);
-          }
+        for (let i = 0; i < 5; i += 1) {
+          const randomNumber = Math.floor(Math.random() * results.length);
+          randomSeries.push(results.splice(randomNumber, 1)[0]);
         }
-        recommandedSeries = results.splice(0, 5);
-        this.setState({ recoSeries: recommandedSeries });
+        this.setState({ recoSeries: randomSeries });
       });
   };
 
@@ -271,7 +299,7 @@ class App extends React.Component {
           handleClick={this.handleClick}
           serieSearch={serieSearch}
         />
-        <Lucky />
+        <Lucky getSeries={this.getSeries} />
         <OurReco recoSeries={recoSeries} />
       </div>
     );
