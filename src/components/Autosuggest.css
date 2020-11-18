@@ -1,25 +1,24 @@
-.serie-select {
-  position: absolute;
-  left: 12px;
-}
+@media screen and (max-width: 769px) {
+  .serie-select {
+    position: absolute;
+    top: 160px;
+    left: 12px;
+  }
 
-.form-Autosuggest {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  height: 100px;
-  align-content: center;
-  position: relative;
-}
+  .form-Autosuggest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.form-Autosuggest input {
-  width: 300px;
-}
+  .form-Autosuggest input {
+    width: 300px;
+  }
 
-.container-Autosuggest {
-  position: absolute;
-  background-color: white;
-  top: 30px;
-  width: 300px;
-  z-index: 2;
+  .container-Autosuggest {
+    background-color: white;
+    top: 10px;
+    width: 300px;
+    z-index: 2;
+  }
 }

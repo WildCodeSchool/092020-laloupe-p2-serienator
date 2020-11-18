@@ -228,7 +228,7 @@ class App extends React.Component {
             results.splice(i, 1);
           }
         }
-        recoSeries.push(results.splice(0, 5));
+        recommandedSeries.push(results.splice(0, 5));
         this.setState({ recoSeries: recommandedSeries });
         console.log(recoSeries);
       });
@@ -247,7 +247,7 @@ class App extends React.Component {
       serieSearch,
     } = this.state;
     return (
-      <div>
+      <div className="App">
         <Header
           placeHolder={placeHolder}
           inputValue={inputValue}
@@ -261,9 +261,19 @@ class App extends React.Component {
           handleClick={this.handleClick}
         />
         <Matchmaking screen={screen} serieSearch={serieSearch} />
+        <MatchmakingMobile
+          placeHolder={placeHolder}
+          inputValue={inputValue}
+          disabled={disabled}
+          error={error}
+          resultSearch={resultSearch}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          handleClick={this.handleClick}
+          serieSearch={serieSearch}
+        />
         <Lucky />
         <OurReco />
-        <MatchmakingMobile serieSearch={serieSearch} />
         <Footer />
       </div>
     );
