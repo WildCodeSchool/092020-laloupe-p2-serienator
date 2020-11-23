@@ -26,14 +26,12 @@ class Lucky extends React.Component {
           randomSeries.push(results.splice(randomNumber, 1)[0]);
           console.log(randomNumber, randomSeries);
         }
-        console.log(randomSeries);
         this.setState({ series: randomSeries });
       });
   };
 
   render() {
     const { series } = this.state;
-    console.log("Serie : ", series);
     return (
       <>
         <div className="LuckySection">

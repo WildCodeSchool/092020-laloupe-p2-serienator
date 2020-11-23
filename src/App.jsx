@@ -192,9 +192,9 @@ class App extends React.Component {
           handleClick={this.handleClick}
         />
         <Matchmaking screen={screen} serieSearch={serieSearch} />
+        <MatchmakingMobile serieSearch={serieSearch} />
         <Lucky />
         <OurReco />
-        <MatchmakingMobile serieSearch={serieSearch} />
       </div>
     );
   }

@@ -120,7 +120,7 @@ class FicheTech extends React.Component {
         </div>
         <div className="description-FicheTech">
           <div>
-            <div>
+            <div className="title-FicheTechMob">
               <h5>{resultat[idKey].name}</h5>
               <p>({resultat[idKey].first_air_date.substr(0, 4)})</p>
             </div>
