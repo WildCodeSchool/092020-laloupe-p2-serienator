@@ -153,14 +153,7 @@ class FicheTech extends React.Component {
 
 FicheTech.propTypes = {
   idKey: PropTypes.number.isRequired,
-  resultat: PropTypes.shape({
-    poster_path: PropTypes.string,
-    name: PropTypes.string,
-    first_air_date: PropTypes.string,
-    overview: PropTypes.string,
-    vote_average: PropTypes.string,
-    id: PropTypes.string,
-  }).isRequired,
+  resultat: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default FicheTech;

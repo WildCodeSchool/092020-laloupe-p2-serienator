@@ -49,9 +49,7 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  resultSearch: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ).isRequired,
+  resultSearch: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeHolder: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,

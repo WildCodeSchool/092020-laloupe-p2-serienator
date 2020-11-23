@@ -56,9 +56,7 @@ class MatchmakingMobile extends React.Component {
   }
 }
 MatchmakingMobile.propTypes = {
-  resultSearch: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ).isRequired,
+  resultSearch: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeHolder: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
   disabled: PropTypes.string.isRequired,
@@ -66,8 +64,6 @@ MatchmakingMobile.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
-  serieSearch: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.object])
-  ).isRequired,
+  serieSearch: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 export default MatchmakingMobile;

@@ -64,6 +64,8 @@ class App extends React.Component {
       buttonClass: buttonClassInit[0],
       placeHolder: placeHolderInit[0],
       resultSearch: [],
+      isLoading: false,
+      idKey: 0,
     };
   }
 
@@ -192,6 +194,7 @@ class App extends React.Component {
         placeHolder: placeHolderInit[newCounter],
         screen: screenStep[newCounter],
         inputValue: "",
+        isLoading: false,
       });
     }
   };
@@ -227,7 +230,6 @@ class App extends React.Component {
       filterGenre = "";
     }
     const url = `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${filterKeyword}&with_genres=${filterGenre}&with_original_language=${filterLanguage}&vote_count.gte=50`;
-    console.log(url);
     axios.get(url).then((res) => {
       let recommandedSeries = [];
       const { results } = res.data;
@@ -261,6 +263,13 @@ class App extends React.Component {
       });
   };
 
+  handleFicheTech = (index) => {
+    this.setState({
+      idKey: index,
+      isLoading: true,
+    });
+  };
+
   render() {
     const {
       placeHolder,
@@ -273,6 +282,8 @@ class App extends React.Component {
       screen,
       serieSearch,
       recoSeries,
+      idKey,
+      isLoading,
     } = this.state;
     return (
       <div className="App">
@@ -301,7 +312,12 @@ class App extends React.Component {
           serieSearch={serieSearch}
         />
         <Lucky getSeries={this.getSeries} />
-        <OurReco recoSeries={recoSeries} />
+        <OurReco
+          recoSeries={recoSeries}
+          handleClick={this.handleFicheTech}
+          idKey={idKey}
+          isLoading={isLoading}
+        />
         <Footer />
       </div>
     );
