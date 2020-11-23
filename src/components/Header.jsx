@@ -7,18 +7,15 @@ import SerieForm from "./SerieForm";
 
 function Header(props) {
   const {
-    serieSearch,
-    counter,
     placeHolder,
-    error,
     inputValue,
-    serie,
+    error,
     disabled,
     buttonClass,
     buttonText,
     resultSearch,
-    handleSubmit,
     handleChange,
+    handleSubmit,
     handleClick,
   } = props;
   return (
@@ -35,18 +32,15 @@ function Header(props) {
         </p>
         <img className="arrowRounded" alt="arrowRounded" src={arrowRounded} />
         <SerieForm
-          serieSearch={serieSearch}
-          counter={counter}
           placeHolder={placeHolder}
-          error={error}
           inputValue={inputValue}
           disabled={disabled}
+          error={error}
           buttonClass={buttonClass}
           buttonText={buttonText}
           resultSearch={resultSearch}
-          handleSubmit={handleSubmit}
           handleChange={handleChange}
-          serie={serie}
+          handleSubmit={handleSubmit}
           handleClick={handleClick}
         />
       </div>
@@ -55,22 +49,13 @@ function Header(props) {
 }
 
 Header.propTypes = {
-  serieSearch: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ).isRequired,
   resultSearch: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ).isRequired,
-  counter: PropTypes.shape({ n: PropTypes.number }).isRequired,
-  serie: PropTypes.shape({
-    idS: PropTypes.number,
-    poster_path: PropTypes.string,
-    name: PropTypes.string,
-  }).isRequired,
   placeHolder: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
-  disabled: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
   buttonClass: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,

@@ -5,6 +5,7 @@ import Matchmaking from "./components/Matchmaking";
 import Header from "./components/Header";
 import OurReco from "./components/OurReco";
 import Lucky from "./components/Lucky";
+import Footer from "./components/Footer";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
 import loadingScreen from "./images/loading-screen.gif";
@@ -31,22 +32,30 @@ class App extends React.Component {
         idS: 0,
         poster_path: "",
         name: "",
+        genres: "",
+        original_language: "",
       },
+      keywords: "",
       serieSearch: [
         {
           idS: 0,
           poster_path: imgDefault,
           name: "question mark card",
+          genres: "",
+          original_language: "",
+          keywords: "",
         },
         {
           idS: 0,
           poster_path: imgDefault,
           name: "question mark card",
+          genres: "",
+          original_language: "",
+          keywords: "",
         },
       ],
-      counter: {
-        n: 0,
-      },
+      recoSeries: [],
+      counter: 0,
       screen: offScreen,
       error: "",
       inputValue: "",
@@ -86,105 +95,165 @@ class App extends React.Component {
     const { resultSearch } = this.state;
     const eureka = resultSearch[findId].name;
     const poster = baseImg + resultSearch[findId].poster_path;
+    const genreString = resultSearch[findId].genre_ids.join("||");
+    this.getKeywords(resultSearch[findId].id);
     this.setState({
       inputValue: eureka,
       serie: {
         idS: resultSearch[findId].id,
         poster_path: poster,
         name: resultSearch[findId].name,
+        original_language: resultSearch[findId].original_language,
+        genres: genreString,
       },
       resultSearch: [],
     });
   };
 
   handleChange = (event) => {
-    this.setState({ inputValue: event.target.value, error: "", idS: 0 });
+    this.setState({
+      inputValue: event.target.value,
+      error: "",
+      serie: { idS: 0 },
+    });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { inputValue, serie, serieSearch, counter } = this.state;
-    if (counter.n < 2) {
+    const { inputValue, serie, serieSearch, counter, keywords } = this.state;
+    if (counter < 2) {
       if (serie.idS !== 0 && inputValue.length >= 1) {
-        if (counter.n === 0) {
+        if (counter === 0) {
           serieSearch[0] = serie;
-        } else if (counter.n === 1) {
+          serieSearch[0].keywords = keywords;
+        } else if (counter === 1) {
           serieSearch[1] = serie;
+          serieSearch[1].keywords = keywords;
+          this.algoMatchmaking();
         }
-        counter.n += 1;
+        const newCounter = counter + 1;
         this.setState({
+          counter: newCounter,
           serie: {
             idS: 0,
             poster_path: "",
             name: "",
+            genres: "",
+            original_language: "",
           },
+          keywords: "",
           error: "",
-          disabled: disabledInit[counter.n],
-          buttonText: buttonTextInit[counter.n],
-          buttonClass: buttonClassInit[counter.n],
-          placeHolder: placeHolderInit[counter.n],
-          screen: screenStep[counter.n],
+          disabled: disabledInit[newCounter],
+          buttonText: buttonTextInit[newCounter],
+          buttonClass: buttonClassInit[newCounter],
+          placeHolder: placeHolderInit[newCounter],
+          screen: screenStep[newCounter],
           inputValue: "",
         });
       } else {
         this.setState({ error: "Ooooops" });
       }
     } else {
-      counter.n = 0;
+      const newCounter = 0;
       this.setState({
+        counter: newCounter,
         serieSearch: [
           {
             idS: 0,
             poster_path: imgDefault,
             name: "question mark card",
+            genres: "",
+            original_language: "",
+            keywords: "",
           },
           {
             idS: 0,
             poster_path: imgDefault,
             name: "question mark card",
+            genres: "",
+            original_language: "",
+            keywords: "",
           },
         ],
         serie: {
           idS: 0,
           poster_path: "",
           name: "",
+          genres: "",
+          original_language: "",
+          keywords: "",
         },
+        keywords: "",
+        recoSeries: [],
         error: "",
-        disabled: disabledInit[counter.n],
-        buttonText: buttonTextInit[counter.n],
-        buttonClass: buttonClassInit[counter.n],
-        placeHolder: placeHolderInit[counter.n],
-        screen: screenStep[counter.n],
+        disabled: disabledInit[newCounter],
+        buttonText: buttonTextInit[newCounter],
+        buttonClass: buttonClassInit[newCounter],
+        placeHolder: placeHolderInit[newCounter],
+        screen: screenStep[newCounter],
         inputValue: "",
       });
     }
   };
 
+  getKeywords = (id) => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/tv/${id}/keywords?api_key=590e90c03c55c8852b1ed2de7215607f`
+      )
+      .then((res) => res.data)
+      .then((data) => {
+        const keywords = data.results.map((keyword) => {
+          return keyword.id;
+        });
+        const keywordString = keywords.join("||");
+        this.setState({ keywords: keywordString });
+      });
+  };
+
+  algoMatchmaking = () => {
+    const { serieSearch, recoSeries } = this.state;
+    axios
+      .get(
+        `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${serieSearch[0].keywords}||${serieSearch[1].keywords}&with_genres=${serieSearch[0].genres}||${serieSearch[1].genres}&with_original_language=${serieSearch[0].original_language}||${serieSearch[1].original_language}&vote_count.gte=100`
+      )
+      .then((res) => {
+        const recommandedSeries = [];
+        const { results } = res.data;
+        for (let i = 0; i < results.length; i += 1) {
+          if (
+            results[i].id === serieSearch[0].idS ||
+            results[i].id === serieSearch[1].idS
+          ) {
+            results.splice(i, 1);
+          }
+        }
+        recommandedSeries.push(results.splice(0, 5));
+        this.setState({ recoSeries: recommandedSeries });
+        console.log(recoSeries);
+      });
+  };
+
   render() {
     const {
-      serieSearch,
-      counter,
-      screen,
       placeHolder,
-      error,
       inputValue,
+      error,
       disabled,
       buttonClass,
-      idS,
       buttonText,
       resultSearch,
+      screen,
+      serieSearch,
     } = this.state;
     return (
-      <div>
+      <div className="App">
         <Header
-          serieSearch={serieSearch}
-          counter={counter}
           placeHolder={placeHolder}
-          error={error}
           inputValue={inputValue}
+          error={error}
           disabled={disabled}
           buttonClass={buttonClass}
-          idS={idS}
           buttonText={buttonText}
           resultSearch={resultSearch}
           handleChange={this.handleChange}
@@ -192,9 +261,20 @@ class App extends React.Component {
           handleClick={this.handleClick}
         />
         <Matchmaking screen={screen} serieSearch={serieSearch} />
-        <MatchmakingMobile serieSearch={serieSearch} />
+        <MatchmakingMobile
+          placeHolder={placeHolder}
+          inputValue={inputValue}
+          disabled={disabled}
+          error={error}
+          resultSearch={resultSearch}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          handleClick={this.handleClick}
+          serieSearch={serieSearch}
+        />
         <Lucky />
         <OurReco />
+        <Footer />
       </div>
     );
   }
