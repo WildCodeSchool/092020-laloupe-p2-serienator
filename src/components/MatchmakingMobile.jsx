@@ -61,13 +61,13 @@ MatchmakingMobile.propTypes = {
   ).isRequired,
   placeHolder: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   serieSearch: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    PropTypes.oneOfType([PropTypes.number, PropTypes.object])
   ).isRequired,
 };
 export default MatchmakingMobile;

@@ -62,7 +62,7 @@ SerieForm.propTypes = {
   placeHolder: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.string.isRequired,
   buttonClass: PropTypes.string.isRequired,
   buttonText: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,

@@ -21,7 +21,7 @@ const placeHolderInit = [
 ];
 const buttonTextInit = ["1ère Série", "2ème Série", "Réinitialiser"];
 const buttonClassInit = ["Btnserie1", "Btnserie2", "Btnserie1"];
-const disabledInit = [false, false, "disabled"];
+const disabledInit = ["", "", "disabled"];
 const screenStep = [offScreen, glitchScreen, loadingScreen, successScreen];
 
 class App extends React.Component {

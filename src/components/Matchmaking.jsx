@@ -22,7 +22,7 @@ export default Matchmaking;
 
 Matchmaking.propTypes = {
   serieSearch: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    PropTypes.oneOfType([PropTypes.number, PropTypes.object])
   ).isRequired,
   screen: PropTypes.string.isRequired,
 };
