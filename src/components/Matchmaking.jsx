@@ -4,10 +4,10 @@ import "./matchmaking.css";
 import MatchmakingCard from "./MatchmakingCard";
 import TvDisplay from "./TvDisplay";
 
-function Matchmaking(props) {
+const Matchmaking = React.forwardRef((props, ref) => {
   const { screen, serieSearch } = props;
   return (
-    <section className="matchmaking">
+    <section className="matchmaking" ref={ref}>
       <h2>Quelles sont les 2 dernières séries que tu as regardées ?</h2>
       <div className="matchmaking-container">
         <MatchmakingCard card={serieSearch[0]} />
@@ -16,7 +16,7 @@ function Matchmaking(props) {
       </div>
     </section>
   );
-}
+});
 
 export default Matchmaking;
 

@@ -67,6 +67,8 @@ class App extends React.Component {
       isLoading: false,
       idKey: 0,
     };
+    this.recoDiv = React.createRef();
+    this.matchmakingDiv = React.createRef();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -128,10 +130,22 @@ class App extends React.Component {
         if (counter === 0) {
           serieSearch[0] = serie;
           serieSearch[0].keywords = keywords;
+          if (this.matchmakingDiv.current) {
+            this.matchmakingDiv.current.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+            });
+          }
         } else if (counter === 1) {
           serieSearch[1] = serie;
           serieSearch[1].keywords = keywords;
           this.algoMatchmaking();
+          if (this.recoDiv.current) {
+            this.recoDiv.current.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
         }
         const newCounter = counter + 1;
         this.setState({
@@ -299,7 +313,11 @@ class App extends React.Component {
           handleSubmit={this.handleSubmit}
           handleClick={this.handleClick}
         />
-        <Matchmaking screen={screen} serieSearch={serieSearch} />
+        <Matchmaking
+          screen={screen}
+          serieSearch={serieSearch}
+          ref={this.matchmakingDiv}
+        />
         <MatchmakingMobile
           placeHolder={placeHolder}
           inputValue={inputValue}
@@ -313,6 +331,7 @@ class App extends React.Component {
         />
         <Lucky getSeries={this.getSeries} />
         <OurReco
+          ref={this.recoDiv}
           recoSeries={recoSeries}
           handleClick={this.handleFicheTech}
           idKey={idKey}
