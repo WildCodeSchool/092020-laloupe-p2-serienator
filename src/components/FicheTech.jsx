@@ -12,9 +12,7 @@ class FicheTech extends React.Component {
     super(props);
     this.state = {
       tvId: [],
-      genreId: [],
       filteredGenre: [],
-      popUp: true,
     };
   }
 
@@ -24,66 +22,47 @@ class FicheTech extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { idKey } = this.props;
+    const { tvId } = this.state;
     if (prevProps.idKey !== idKey) {
-      this.getGenre();
+      this.getGenre(tvId);
     }
   }
 
   getApiGenre = () => {
-    const { idKey, resultat } = this.props;
     axios
       .get(
         "https://api.themoviedb.org/3/genre/tv/list?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr"
       )
       .then((response) => response.data)
       .then((data) => {
-        this.setState({
-          tvId: data.genres,
-          genreId: resultat[idKey].genre_ids,
-        });
+        this.getGenre(data.genres);
       });
   };
 
-  getGenre = () => {
-    const { genreId, tvId } = this.state;
+  getGenre = (genreId) => {
     let counter = 0;
     let searchGenre = 0;
     const tabGenre = [];
     const { idKey, resultat } = this.props;
-    axios
-      .get(
-        "https://api.themoviedb.org/3/genre/tv/list?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr"
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        for (let i = 0; i < genreId.length; i += 1) {
-          searchGenre = genreId[counter];
-          for (let j = 0; j < tvId.length; j += 1) {
-            if (tvId[j].id === searchGenre) {
-              tabGenre.push(tvId[j].name);
-            }
-          }
-          counter += 1;
+    const { tvId } = this.state;
+    for (let i = 0; i < resultat[idKey].genre_ids.length; i += 1) {
+      searchGenre = resultat[idKey].genre_ids[counter];
+      for (let j = 0; j < genreId.length; j += 1) {
+        if (genreId[j].id === searchGenre) {
+          tabGenre.push(genreId[j].name);
         }
-        this.setState({
-          filteredGenre: tabGenre,
-          tvId: data.genres,
-          genreId: resultat[idKey].genre_ids,
-          popUp: true,
-        });
-      });
-  };
-
-  closePopUp = () => {
-    const { popUp } = this.state;
-    if (popUp === true) {
-      this.setState({ popUp: false });
+      }
+      counter += 1;
     }
-  };
-
-  handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      this.closePopUp();
+    if (genreId.length !== tvId.length) {
+      this.setState({
+        filteredGenre: tabGenre,
+        tvId: genreId,
+      });
+    } else {
+      this.setState({
+        filteredGenre: tabGenre,
+      });
     }
   };
 
@@ -98,10 +77,17 @@ class FicheTech extends React.Component {
     return noteClass;
   };
 
+  handleKeyPress = (event) => {
+    const { closePopUp } = this.props;
+    if (event.key === "Enter") {
+      closePopUp();
+    }
+  };
+
   render() {
-    const { resultat, idKey } = this.props;
-    const { filteredGenre, popUp } = this.state;
-    const { closePopUp, handleKeyPress, noteColor } = this;
+    const { resultat, idKey, closePopUp, popUp } = this.props;
+    const { filteredGenre } = this.state;
+    const { handleKeyPress, noteColor } = this;
     return (
       <section className={popUp ? "display-FicheTech" : "closePopUp"}>
         <button
@@ -116,6 +102,7 @@ class FicheTech extends React.Component {
           <img
             src={baseImg + resultat[idKey].poster_path}
             alt={resultat[idKey].name}
+            className="imgFicheTech"
           />
         </div>
         <div className="description-FicheTech">
@@ -154,6 +141,8 @@ class FicheTech extends React.Component {
 FicheTech.propTypes = {
   idKey: PropTypes.number.isRequired,
   resultat: PropTypes.arrayOf(PropTypes.object).isRequired,
+  closePopUp: PropTypes.func.isRequired,
+  popUp: PropTypes.bool.isRequired,
 };
 
 export default FicheTech;

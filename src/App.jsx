@@ -66,8 +66,8 @@ class App extends React.Component {
       resultSearch: [],
       isLoading: false,
       idKey: 0,
+      popUp: true,
     };
-    this.recoDiv = React.createRef();
     this.matchmakingDiv = React.createRef();
   }
 
@@ -140,12 +140,6 @@ class App extends React.Component {
           serieSearch[1] = serie;
           serieSearch[1].keywords = keywords;
           this.algoMatchmaking();
-          // if (this.recoDiv.current) {
-          //   this.recoDiv.current.scrollIntoView({
-          //     behavior: "smooth",
-          //     block: "start",
-          //   });
-          // }
         }
         const newCounter = counter + 1;
         this.setState({
@@ -283,7 +277,15 @@ class App extends React.Component {
     this.setState({
       idKey: index,
       isLoading: true,
+      popUp: true,
     });
+  };
+
+  closePopUp = () => {
+    const { popUp } = this.state;
+    if (popUp === true) {
+      this.setState({ popUp: false });
+    }
   };
 
   render() {
@@ -300,6 +302,7 @@ class App extends React.Component {
       recoSeries,
       idKey,
       isLoading,
+      popUp,
     } = this.state;
     return (
       <div className="App">
@@ -333,11 +336,12 @@ class App extends React.Component {
         />
         <Lucky getSeries={this.getSeries} />
         <OurReco
-          ref={this.recoDiv}
           recoSeries={recoSeries}
           handleClick={this.handleFicheTech}
           idKey={idKey}
           isLoading={isLoading}
+          closePopUp={this.closePopUp}
+          popUp={popUp}
         />
         <Footer />
       </div>

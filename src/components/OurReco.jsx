@@ -20,6 +20,19 @@ class OurReco extends React.Component {
         next2: 2,
       },
     };
+    this.recoDiv = React.createRef();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { recoSeries } = this.props;
+    if (prevProps.recoSeries !== recoSeries) {
+      if (this.recoDiv.current) {
+        this.recoDiv.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
   }
 
   clickPrevious = () => {
@@ -80,9 +93,19 @@ class OurReco extends React.Component {
   render() {
     const { clickPrevious, clickNext, determineClass, handleKeyPress } = this;
     const { selectedIndex } = this.state;
-    const { idKey, isLoading, recoSeries, handleClick } = this.props;
+    const {
+      idKey,
+      isLoading,
+      recoSeries,
+      handleClick,
+      closePopUp,
+      popUp,
+    } = this.props;
     return (
-      <section className="display-OurReco">
+      <section
+        className={recoSeries[0] ? "display-OurReco" : "none"}
+        ref={this.recoDiv}
+      >
         <div>
           <h2>Voici nos recommandations</h2>
           <p className="subtitle-OurReco">Les avez-vous déjà vues ?</p>
@@ -126,7 +149,16 @@ class OurReco extends React.Component {
             <img src={arrow} alt="next" className="arrow" />
           </button>
         </div>
-        {isLoading ? <FicheTech resultat={recoSeries} idKey={idKey} /> : <></>}
+        {isLoading ? (
+          <FicheTech
+            resultat={recoSeries}
+            idKey={idKey}
+            closePopUp={closePopUp}
+            popUp={popUp}
+          />
+        ) : (
+          <></>
+        )}
       </section>
     );
   }
@@ -137,6 +169,8 @@ OurReco.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   recoSeries: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleClick: PropTypes.func.isRequired,
+  closePopUp: PropTypes.func.isRequired,
+  popUp: PropTypes.bool.isRequired,
 };
 
 export default OurReco;

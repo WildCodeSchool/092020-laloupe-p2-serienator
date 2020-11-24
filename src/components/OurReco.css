@@ -33,6 +33,9 @@
   display: none;
 }
 
+.none {
+  display: none;
+}
 @media screen and (max-width: 769px) {
   .scene {
     width: 220px;
