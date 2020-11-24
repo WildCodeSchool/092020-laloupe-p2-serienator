@@ -67,7 +67,6 @@ class App extends React.Component {
       isLoading: false,
       idKey: 0,
     };
-    this.recoDiv = React.createRef();
     this.matchmakingDiv = React.createRef();
   }
 
@@ -140,12 +139,6 @@ class App extends React.Component {
           serieSearch[1] = serie;
           serieSearch[1].keywords = keywords;
           this.algoMatchmaking();
-          // if (this.recoDiv.current) {
-          //   this.recoDiv.current.scrollIntoView({
-          //     behavior: "smooth",
-          //     block: "start",
-          //   });
-          // }
         }
         const newCounter = counter + 1;
         this.setState({
@@ -333,7 +326,6 @@ class App extends React.Component {
         />
         <Lucky getSeries={this.getSeries} />
         <OurReco
-          ref={this.recoDiv}
           recoSeries={recoSeries}
           handleClick={this.handleFicheTech}
           idKey={idKey}

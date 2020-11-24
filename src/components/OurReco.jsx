@@ -20,6 +20,19 @@ class OurReco extends React.Component {
         next2: 2,
       },
     };
+    this.recoDiv = React.createRef();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { recoSeries } = this.props;
+    if (prevProps.recoSeries !== recoSeries) {
+      if (this.recoDiv.current) {
+        this.recoDiv.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
   }
 
   clickPrevious = () => {
@@ -82,7 +95,10 @@ class OurReco extends React.Component {
     const { selectedIndex } = this.state;
     const { idKey, isLoading, recoSeries, handleClick } = this.props;
     return (
-      <section className="display-OurReco">
+      <section
+        className={recoSeries[0] ? "display-OurReco" : "none"}
+        ref={this.recoDiv}
+      >
         <div>
           <h2>Voici nos recommandations</h2>
           <p className="subtitle-OurReco">Les avez-vous déjà vues ?</p>

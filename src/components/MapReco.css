@@ -4,6 +4,9 @@
 
 .cards-MapReco img {
   border-radius: 10px;
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
 }
 
 .cards-MapReco:hover {
