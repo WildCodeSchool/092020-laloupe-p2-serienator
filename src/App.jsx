@@ -3,6 +3,7 @@ import axios from "axios";
 import MatchmakingMobile from "./components/MatchmakingMobile";
 import Matchmaking from "./components/Matchmaking";
 import Header from "./components/Header";
+import Top3 from "./components/Top3";
 import OurReco from "./components/OurReco";
 import Lucky from "./components/Lucky";
 import Footer from "./components/Footer";
@@ -274,6 +275,7 @@ class App extends React.Component {
         />
         <Lucky />
         <OurReco />
+        <Top3 />
         <Footer />
       </div>
     );
