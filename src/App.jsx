@@ -140,12 +140,12 @@ class App extends React.Component {
           serieSearch[1] = serie;
           serieSearch[1].keywords = keywords;
           this.algoMatchmaking();
-          if (this.recoDiv.current) {
-            this.recoDiv.current.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
+          // if (this.recoDiv.current) {
+          //   this.recoDiv.current.scrollIntoView({
+          //     behavior: "smooth",
+          //     block: "start",
+          //   });
+          // }
         }
         const newCounter = counter + 1;
         this.setState({
@@ -244,6 +244,7 @@ class App extends React.Component {
       filterGenre = "";
     }
     const url = `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${filterKeyword}&with_genres=${filterGenre}&with_original_language=${filterLanguage}&vote_count.gte=50`;
+    console.log(url);
     axios.get(url).then((res) => {
       let recommandedSeries = [];
       const { results } = res.data;
@@ -253,6 +254,7 @@ class App extends React.Component {
           results[i].id === serieSearch[1].idS
         ) {
           results.splice(i, 1);
+          i -= 1;
         }
       }
       recommandedSeries = results.splice(0, 5);
