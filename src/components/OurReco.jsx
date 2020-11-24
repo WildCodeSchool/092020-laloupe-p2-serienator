@@ -93,7 +93,14 @@ class OurReco extends React.Component {
   render() {
     const { clickPrevious, clickNext, determineClass, handleKeyPress } = this;
     const { selectedIndex } = this.state;
-    const { idKey, isLoading, recoSeries, handleClick } = this.props;
+    const {
+      idKey,
+      isLoading,
+      recoSeries,
+      handleClick,
+      closePopUp,
+      popUp,
+    } = this.props;
     return (
       <section
         className={recoSeries[0] ? "display-OurReco" : "none"}
@@ -142,7 +149,16 @@ class OurReco extends React.Component {
             <img src={arrow} alt="next" className="arrow" />
           </button>
         </div>
-        {isLoading ? <FicheTech resultat={recoSeries} idKey={idKey} /> : <></>}
+        {isLoading ? (
+          <FicheTech
+            resultat={recoSeries}
+            idKey={idKey}
+            closePopUp={closePopUp}
+            popUp={popUp}
+          />
+        ) : (
+          <></>
+        )}
       </section>
     );
   }
@@ -153,6 +169,8 @@ OurReco.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   recoSeries: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleClick: PropTypes.func.isRequired,
+  closePopUp: PropTypes.func.isRequired,
+  popUp: PropTypes.bool.isRequired,
 };
 
 export default OurReco;

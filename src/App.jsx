@@ -66,6 +66,7 @@ class App extends React.Component {
       resultSearch: [],
       isLoading: false,
       idKey: 0,
+      popUp: true,
     };
     this.matchmakingDiv = React.createRef();
   }
@@ -276,7 +277,15 @@ class App extends React.Component {
     this.setState({
       idKey: index,
       isLoading: true,
+      popUp: true,
     });
+  };
+
+  closePopUp = () => {
+    const { popUp } = this.state;
+    if (popUp === true) {
+      this.setState({ popUp: false });
+    }
   };
 
   render() {
@@ -293,6 +302,7 @@ class App extends React.Component {
       recoSeries,
       idKey,
       isLoading,
+      popUp,
     } = this.state;
     return (
       <div className="App">
@@ -330,6 +340,8 @@ class App extends React.Component {
           handleClick={this.handleFicheTech}
           idKey={idKey}
           isLoading={isLoading}
+          closePopUp={this.closePopUp}
+          popUp={popUp}
         />
         <Footer />
       </div>

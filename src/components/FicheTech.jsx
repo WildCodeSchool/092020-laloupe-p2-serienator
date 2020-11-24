@@ -13,7 +13,6 @@ class FicheTech extends React.Component {
     this.state = {
       tvId: [],
       filteredGenre: [],
-      popUp: true,
     };
   }
 
@@ -58,27 +57,12 @@ class FicheTech extends React.Component {
     if (genreId.length !== tvId.length) {
       this.setState({
         filteredGenre: tabGenre,
-        popUp: true,
         tvId: genreId,
       });
     } else {
       this.setState({
         filteredGenre: tabGenre,
-        popUp: true,
       });
-    }
-  };
-
-  closePopUp = () => {
-    const { popUp } = this.state;
-    if (popUp === true) {
-      this.setState({ popUp: false });
-    }
-  };
-
-  handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      this.closePopUp();
     }
   };
 
@@ -93,10 +77,17 @@ class FicheTech extends React.Component {
     return noteClass;
   };
 
+  handleKeyPress = (event) => {
+    const { closePopUp } = this.props;
+    if (event.key === "Enter") {
+      closePopUp();
+    }
+  };
+
   render() {
-    const { resultat, idKey } = this.props;
-    const { filteredGenre, popUp } = this.state;
-    const { closePopUp, handleKeyPress, noteColor } = this;
+    const { resultat, idKey, closePopUp, popUp } = this.props;
+    const { filteredGenre } = this.state;
+    const { handleKeyPress, noteColor } = this;
     return (
       <section className={popUp ? "display-FicheTech" : "closePopUp"}>
         <button
@@ -150,6 +141,8 @@ class FicheTech extends React.Component {
 FicheTech.propTypes = {
   idKey: PropTypes.number.isRequired,
   resultat: PropTypes.arrayOf(PropTypes.object).isRequired,
+  closePopUp: PropTypes.func.isRequired,
+  popUp: PropTypes.bool.isRequired,
 };
 
 export default FicheTech;
