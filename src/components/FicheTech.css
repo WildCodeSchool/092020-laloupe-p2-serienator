@@ -122,4 +122,16 @@
   .closePopUp {
     display: none;
   }
+
+  .description-FicheTech {
+    padding: 6%;
+  }
+
+  .card-imgFicheTech {
+    margin: 20px auto;
+  }
+
+  .title-FicheTechMob {
+    text-align: center;
+  }
 }
