@@ -354,6 +354,7 @@ class App extends React.Component {
           handleSubmit={this.handleSubmit}
           handleClick={this.handleClick}
           serieSearch={serieSearch}
+          buttonText={buttonText}
         />
         <Lucky getSeries={this.getSeries} />
         <OurReco
