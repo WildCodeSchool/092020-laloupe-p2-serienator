@@ -8,6 +8,7 @@ import OurReco from "./components/OurReco";
 import Lucky from "./components/Lucky";
 import Footer from "./components/Footer";
 import TransitionTop3 from "./components/TransitionTop3";
+import Slide from "./components/Slide";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
 import loadingScreen from "./images/loading-screen.gif";
@@ -349,6 +350,7 @@ class App extends React.Component {
         <TransitionTop3 />
         <Top3 closePopUp={this.closePopUp} popUp={popUp} handleClick={this.handleFicheTech} idKey={idKey} isLoading={isLoading}/>
         <Footer />
+        {/* <Slide /> */}
       </div>
     );
   }
