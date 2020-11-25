@@ -7,8 +7,9 @@ section.matchmaking-mobile {
     flex-direction: column;
     background-image: url(../images/background-matchmaking.-mobile.jpeg);
     background-size: 100% 100%;
-    height: 400px;
+    height: auto;
     width: 100%;
+    padding-bottom: 30px;
   }
 
   .mobile-position {
@@ -16,7 +17,7 @@ section.matchmaking-mobile {
     flex-direction: row;
     justify-content: space-around;
     position: relative;
-    height: 350px;
+    height: auto;
   }
 
   .matchmaking-mobile h2 {
