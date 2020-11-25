@@ -2,13 +2,16 @@
   .serie-select {
     position: absolute;
     top: 160px;
-    left: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .form-Autosuggest {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .form-Autosuggest input {
@@ -20,5 +23,13 @@
     top: 10px;
     width: 300px;
     z-index: 2;
+  }
+
+  .error-mobile {
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    background-color: #fff8e3;
+    text-align: center;
+    width: 300px;
   }
 }

@@ -6,19 +6,13 @@
   background-image: url(../images/background-matchmaking2.jpeg);
   background-size: 100% 100%;
   background-position: bottom;
-}
-
-.matchmaking h2 {
-  text-align: center;
-  margin: 25px;
-  padding: 0 5%;
-  font-weight: 400;
+  padding: 50px 0;
 }
 
 .matchmaking .matchmaking-container {
   display: flex;
   width: 100%;
-  padding: 1rem 10%;
+  padding: 50px 10% 0;
   justify-content: space-between;
   align-items: center;
 }
@@ -92,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 589px) {
   .matchmaking {
     display: none;
   }

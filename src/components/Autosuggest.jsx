@@ -19,6 +19,7 @@ function Autosuggest(props) {
 
   return (
     <div className="serie-select">
+      <p className={error ? "error-mobile" : ""}>{error}</p>
       <form onSubmit={handleSubmit} className="form-Autosuggest">
         <label htmlFor="title">
           <input
@@ -30,7 +31,6 @@ function Autosuggest(props) {
             onChange={handleChange}
           />
         </label>
-        <p>{error}</p>
         <ul className="container-Autosuggest">
           {resultSearch.map((resultat, index) => (
             <ResultAuto

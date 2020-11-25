@@ -2,6 +2,7 @@
   display: flex;
   width: 100%;
   height: 50px;
+  margin-left: -60px;
 }
 
 .container-ResultAuto:hover {
@@ -27,4 +28,11 @@
   width: 45px;
   height: 45px;
   padding: 5px;
+}
+
+@media screen and (max-width: 589px) {
+  .container-ResultAuto {
+    margin-left: 0;
+    z-index: 3;
+  }
 }

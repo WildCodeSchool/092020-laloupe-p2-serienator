@@ -21,7 +21,7 @@ function SerieForm(props) {
   } = props;
   return (
     <form className="SerieForm2">
-      <div className="Error">
+      <div className={error ? "Error" : "none"}>
         <p>{error}</p>
       </div>
       <div className="SerieForm">

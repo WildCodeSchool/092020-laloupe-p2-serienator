@@ -30,7 +30,6 @@
   width: 350px;
   color: white;
   font-size: larger;
-  z-index: 4200;
   cursor: pointer;
 
   margin-bottom: 40px;
@@ -46,13 +45,6 @@
   transition: ease-in-out 0.4s;
   border-radius: 40px;
   padding: auto;
-
-  height: 65px;
-  width: 350px;
-  color: white;
-  font-size: larger;
-  cursor: pointer;
-  z-index: 4200;
 }
 .reco5 {
   display: flex;

@@ -1,26 +1,29 @@
 .Error {
-  color: yellow;
-  font-size: 30px;
-  height: 50px;
-  width: 200px;
-  margin-top: 10px;
-  z-index: 8;
+  display: block;
+  color: #fff8e3;
+  font-size: 24px;
+  height: auto;
+  width: 400px;
+  text-align: center;
+  padding-bottom: 15px;
 }
 
 .SerieForm2 {
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
   align-items: center;
-  position: relative;
+  width: 60%;
+  min-width: 700px;
+  height: auto;
+  overflow: hidden;
 }
 
 .SerieForm {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  position: absolute;
-  width: 70%;
+  width: 100%;
 }
 
 .Btnserie1 {
@@ -35,56 +38,20 @@
   height: 65px;
   color: white;
   font-size: larger;
-  margin-top: -80px;
-  margin-left: -50px;
+  margin-left: -55px;
   z-index: 4200;
 }
 .Btnserie1:hover {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-
   border: 0px;
   background: #df9c51;
   transition: ease-in-out 0.4s;
-  border-radius: 40px;
-  padding: 10px 30px;
-
-  height: 65px;
-  color: white;
-  font-size: larger;
-  margin-top: -80px;
-  margin-left: -50px;
-  z-index: 4200;
 }
-
-/* .Btnserie1:hover{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-   
-  border: 0px;
-  background: #E1AF74;
-  transition: ease-in-out 0.4s;  
-  border-radius: 40px;
-  padding: 10px 30px;
-  
-  height: 65px;
-  color: white;
-  font-size: larger;
-  margin-top: 40px;
-  margin-left: -50px;
-  z-index:2000;  
-} */
 
 .Btnserie2 {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-
   border: 0px;
   background: rgb(72, 158, 238);
   border-radius: 40px;
@@ -92,29 +59,13 @@
   height: 65px;
   color: white;
   font-size: larger;
-  margin-top: -80px;
-  margin-left: -50px;
+  margin-left: -55px;
   z-index: 4200;
 }
 
 .Btnserie2:hover {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-
-  border: 0px;
   background: rgb(39, 89, 136);
   transition: ease-in-out 0.4s;
-  border-radius: 40px;
-  padding: 10px 30px;
-
-  height: 65px;
-  color: white;
-  font-size: larger;
-  margin-top: -80px;
-  margin-left: -50px;
-  z-index: 4200;
 }
 
 .SerieForm input {
@@ -123,16 +74,14 @@
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 30px;
-  margin-top: -80px;
   font-size: 20px;
   z-index: 4000;
 }
 
 .containerAutosuggest {
-  position: absolute;
-  margin-top: -15px;
-  z-index: 10;
-  width: 20%;
+  margin-top: -20px;
+  width: 55%;
+  z-index: 3;
 }
 
 @media screen and (max-width: 769px) {

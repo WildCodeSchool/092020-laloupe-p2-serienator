@@ -8,7 +8,6 @@ import Lucky from "./components/Lucky";
 import Footer from "./components/Footer";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
-import loadingScreen from "./images/loading-screen.gif";
 import offScreen from "./images/screen-tv-off.jpg";
 import glitchScreen from "./images/screen-tv-glitch800.webp";
 import successScreen from "./images/success.gif";
@@ -22,7 +21,7 @@ const placeHolderInit = [
 const buttonTextInit = ["1ère Série", "2ème Série", "Réinitialiser"];
 const buttonClassInit = ["Btnserie1", "Btnserie2", "Btnserie1"];
 const disabledInit = ["", "", "disabled"];
-const screenStep = [offScreen, glitchScreen, loadingScreen, successScreen];
+const screenStep = [offScreen, glitchScreen, successScreen];
 
 class App extends React.Component {
   constructor(props) {
@@ -161,7 +160,10 @@ class App extends React.Component {
           inputValue: "",
         });
       } else {
-        this.setState({ error: "Ooooops" });
+        this.setState({
+          error:
+            "Cette série n'est pas reconnue. Veuillez cliquer sur une proposition.",
+        });
       }
     } else {
       const newCounter = 0;
@@ -226,7 +228,7 @@ class App extends React.Component {
     const { serieSearch } = this.state;
     let filterGenre = `${serieSearch[0].genres}||${serieSearch[1].genres}`;
     let filterKeyword = `${serieSearch[0].keywords}||${serieSearch[1].keywords}`;
-    const filterLanguage = `${serieSearch[0].original_language}||${serieSearch[1].original_language}`;
+    let filterLanguage = `${serieSearch[0].original_language}||${serieSearch[1].original_language}`;
     if (filterGenre.includes("10762")) {
       filterGenre = "10762";
       filterKeyword = "";
@@ -237,22 +239,41 @@ class App extends React.Component {
     if (filterGenre === "||") {
       filterGenre = "";
     }
+    let recommandedSeries = [];
     const url = `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${filterKeyword}&with_genres=${filterGenre}&with_original_language=${filterLanguage}&vote_count.gte=50`;
-    console.log(url);
     axios.get(url).then((res) => {
-      let recommandedSeries = [];
       const { results } = res.data;
-      for (let i = 0; i < results.length; i += 1) {
-        if (
-          results[i].id === serieSearch[0].idS ||
-          results[i].id === serieSearch[1].idS
-        ) {
-          results.splice(i, 1);
-          i -= 1;
+      if (results.length >= 5) {
+        console.log("results >=5");
+        for (let i = 0; i < results.length; i += 1) {
+          if (
+            results[i].id === serieSearch[0].idS ||
+            results[i].id === serieSearch[1].idS
+          ) {
+            results.splice(i, 1);
+            i -= 1;
+          }
         }
+        recommandedSeries = results.splice(0, 5);
+        this.setState({ recoSeries: recommandedSeries });
+      } else {
+        filterLanguage += "||en||fr";
+        const newUrl = `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${filterKeyword}&with_genres=${filterGenre}&with_original_language=${filterLanguage}&vote_count.gte=50`;
+        axios.get(newUrl).then((response) => {
+          const newResults = response.data.results;
+          for (let i = 0; i < newResults.length; i += 1) {
+            if (
+              newResults[i].id === serieSearch[0].idS ||
+              newResults[i].id === serieSearch[1].idS
+            ) {
+              newResults.splice(i, 1);
+              i -= 1;
+            }
+          }
+          recommandedSeries = newResults.splice(0, 5);
+          this.setState({ recoSeries: recommandedSeries });
+        });
       }
-      recommandedSeries = results.splice(0, 5);
-      this.setState({ recoSeries: recommandedSeries });
     });
   };
 

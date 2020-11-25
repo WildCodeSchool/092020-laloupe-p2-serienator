@@ -1,11 +1,12 @@
 section.matchmaking-mobile {
   display: none;
 }
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 589px) {
   section.matchmaking-mobile {
     display: flex;
     flex-direction: column;
     background-image: url(../images/background-matchmaking.-mobile.jpeg);
+    background-size: 100% 100%;
     height: 400px;
     width: 100%;
   }
@@ -13,7 +14,7 @@ section.matchmaking-mobile {
   .mobile-position {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     position: relative;
     padding-left: 15px;
