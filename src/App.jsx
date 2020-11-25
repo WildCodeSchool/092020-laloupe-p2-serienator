@@ -162,7 +162,7 @@ class App extends React.Component {
       } else {
         this.setState({
           error:
-            "Cette série n'est pas reconnue. Veuillez cliquer sur une proposition.",
+            "Cette série n'est pas reconnue, veuillez cliquer sur une proposition.",
         });
       }
     } else {

@@ -21,16 +21,14 @@ function Autosuggest(props) {
     <div className="serie-select">
       <p className={error ? "error-mobile" : ""}>{error}</p>
       <form onSubmit={handleSubmit} className="form-Autosuggest">
-        <label htmlFor="title">
-          <input
-            placeholder={placeHolder}
-            id="title"
-            name="title"
-            type="text"
-            value={inputValue}
-            onChange={handleChange}
-          />
-        </label>
+        <input
+          placeholder={placeHolder}
+          id="title"
+          name="title"
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+        />
         <ul className="container-Autosuggest">
           {resultSearch.map((resultat, index) => (
             <ResultAuto

@@ -12,16 +12,14 @@
 }
 
 .titre {
-  padding-top: 50px;
-  padding-left: 100px;
+  padding: 50px 100px 5px 100px;
   font-size: 40px;
   color: #fff8e3;
   text-shadow: 3px 3px 5px black;
 }
 
 .soustitre {
-  padding-top: 5px;
-  padding-left: 100px;
+  padding: 5px 100px 5px 100px;
   color: #fff8e3;
   text-shadow: 2px 2px 3px black;
   font-size: 24px;
@@ -32,7 +30,6 @@
   display: block;
   height: 150px;
   transform: rotate(180deg);
-  color: white;
   position: absolute;
   left: 10%;
   top: 50px;
@@ -46,35 +43,33 @@
   position: relative;
 }
 
-@media screen and (min-width: 0px) and (max-width: 769px) {
+@media screen and (min-width: 0px) and (max-width: 589px) {
   .header .backgroundHeader {
+    padding-top: 20px;
     background-color: rgba(1, 53, 109, 0.6);
-    height: 400px;
+    height: 350px;
   }
 
   .header {
     background: url(../images/old-tv_1280.jpg) center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 400px;
+    height: 350px;
     width: 100%;
   }
 
-  .header .arrowRounded {
+  .header .input-line {
     display: none;
   }
-
   .titre {
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 30px;
     text-align: center;
-    color: white;
     text-shadow: 2px 2px 3px black;
   }
 
   .soustitre {
     padding: 20px;
-    color: white;
     text-align: center;
     font-size: 20px;
     text-shadow: 1px 1px 2px black;

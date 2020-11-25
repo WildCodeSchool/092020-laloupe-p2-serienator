@@ -84,7 +84,7 @@
   z-index: 3;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 589px) {
   .SerieForm2 {
     display: none;
   }
