@@ -1,0 +1,73 @@
+.Transition .backgroundHeader {
+  background-color: rgba(1, 53, 109, 0.6);
+  height: 400px;
+}
+
+.Transition {
+  background: url(../images/transition.webp) center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.text {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.textMachine {
+  font-family: "Special Elite", cursive;
+  font-size: 50px;
+  text-shadow: 3px 3px 5px black;
+  color: white;
+}
+.nosSeries {
+  font-family: "Special Elite", cursive;
+  font-size: 30px;
+  margin-top: 10px;
+  text-shadow: 2px 2px 3px black;
+  color: white;
+}
+
+@media screen and (max-width: 770px) {
+  .Transition .backgroundHeader {
+    background-color: rgba(1, 53, 109, 0.6);
+    height: 250px;
+  }
+
+  .Transition {
+    background: url(../images/transition.webp) center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 250px;
+    width: 100%;
+    margin-bottom: 50px;
+    margin-top: 30px;
+  }
+  .text {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .textMachine {
+    font-size: 30px;
+    text-shadow: 1px 1px 3px black;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .nosSeries {
+    font-size: 20px;
+    margin-top: 10px;
+    text-shadow: 1px 1px 2px black;
+  }
+}

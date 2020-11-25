@@ -7,6 +7,7 @@ import Top3 from "./components/Top3";
 import OurReco from "./components/OurReco";
 import Lucky from "./components/Lucky";
 import Footer from "./components/Footer";
+import TransitionTop3 from "./components/TransitionTop3";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
 import loadingScreen from "./images/loading-screen.gif";
@@ -344,6 +345,7 @@ class App extends React.Component {
           closePopUp={this.closePopUp}
           popUp={popUp}
         />
+        <TransitionTop3 />
         <Top3 />
         <Footer />
       </div>
