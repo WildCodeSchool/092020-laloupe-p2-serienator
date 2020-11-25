@@ -1,6 +1,7 @@
 import React from 'react'
 import MapReco from "./MapReco"
 import FicheTech from "./FicheTech"
+import PropTypes from "prop-types";
 import "./Top3Damien.css"
 
 
@@ -77,6 +78,7 @@ class Top3Damien extends React.Component {
   };
 
   render() {
+    const {closePopUp,popUp} = this.props;
     const { handleClick } = this;
     const { idKey, isLoading, resultat } = this.state;
     return (
@@ -103,11 +105,14 @@ class Top3Damien extends React.Component {
                                   
                       ))}
             </div>
-            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} /> : <></>}
+            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} closePopUp={closePopUp} popUp={popUp}/> : <></>}
                                  
       </section>
     );
   }
 }
-
+Top3Damien.propTypes = {
+  closePopUp: PropTypes.func.isRequired,
+  popUp: PropTypes.bool.isRequired,
+};
 export default Top3Damien;

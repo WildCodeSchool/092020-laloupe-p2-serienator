@@ -1,6 +1,7 @@
 import React from 'react'
 import MapReco from "./MapReco"
 import FicheTech from "./FicheTech"
+import PropTypes from "prop-types";
 import "./Top3Ingrid.css"
 
 
@@ -13,7 +14,7 @@ const series = [
     id: 43865,
     name: "Psycho-Pass",
     vote_count: 0,
-    vote_average: 0.0,
+    vote_average: 7.8,
     first_air_date: "2012-10-12",
     poster_path: "/aX6S3P8xiz9nJwXjaka5e9kT6f4.jpg",
     genre_ids: [10765],
@@ -76,6 +77,7 @@ class Top3Ingrid extends React.Component {
   };
 
   render() {
+    const {closePopUp,popUp} = this.props;
     const { handleClick } = this;
     const { idKey, isLoading, resultat } = this.state;
     return (
@@ -102,11 +104,14 @@ class Top3Ingrid extends React.Component {
                                   
                       ))}
             </div>
-            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} /> : <></>}
+            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} closePopUp={closePopUp} popUp={popUp}/> : <></>}
                                  
       </section>
     );
   }
 }
-
+Top3Ingrid.propTypes = {
+  closePopUp: PropTypes.func.isRequired,
+  popUp: PropTypes.bool.isRequired,
+};
 export default Top3Ingrid;

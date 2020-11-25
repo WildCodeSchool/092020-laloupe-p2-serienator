@@ -1,6 +1,7 @@
 import React from 'react'
 import MapReco from "./MapReco"
 import FicheTech from "./FicheTech"
+import PropTypes from "prop-types";
 import "./Top3Philippe.css"
 
 
@@ -76,6 +77,7 @@ class Top3Philippe extends React.Component {
   };
 
   render() {
+    const {closePopUp,popUp} = this.props;
     const { handleClick } = this;
     const { idKey, isLoading, resultat } = this.state;
     return (
@@ -102,11 +104,16 @@ class Top3Philippe extends React.Component {
                                   
                       ))}
             </div>
-            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} /> : <></>}
+            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} closePopUp={closePopUp} popUp={popUp} /> : <></>}
                                  
       </section>
     );
   }
 }
+
+Top3Philippe.propTypes = {
+  closePopUp: PropTypes.func.isRequired,
+  popUp: PropTypes.bool.isRequired,
+};
 
 export default Top3Philippe;

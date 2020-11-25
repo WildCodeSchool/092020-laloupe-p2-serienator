@@ -346,7 +346,7 @@ class App extends React.Component {
           popUp={popUp}
         />
         <TransitionTop3 />
-        <Top3 />
+        <Top3 closePopUp={this.closePopUp} popUp={popUp}/>
         <Footer />
       </div>
     );

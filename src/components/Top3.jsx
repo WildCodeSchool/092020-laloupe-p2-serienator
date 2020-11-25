@@ -58,6 +58,7 @@ class Top3 extends Component {
 
     render() {
         const { isShowedPhilippe, isShowedDamien, isShowedIngrid, isShowedThibaut } = this.state;
+        const {closePopUp,popUp} = this.props;
         return (
             <div className="top3Section">
                 <div className="titreTop3">
@@ -71,7 +72,7 @@ class Top3 extends Component {
                 <div class="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedPhilippe ? <Top3Philippe /> : ""}
+                {isShowedPhilippe ? <Top3Philippe closePopUp={closePopUp} popUp={popUp}/> : ""}
                 <div className="titreTop3">
                     
                     <p className="Top3Filipe">Top 3 Séries Netflix selon Ingrid  </p>
@@ -81,7 +82,7 @@ class Top3 extends Component {
                 <div class="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedIngrid ? <Top3Ingrid /> : ""}
+                {isShowedIngrid ? <Top3Ingrid closePopUp={closePopUp}  popUp={popUp}/> : ""}
                 <div className="titreTop3">
                     
                     <p className="Top3Filipe">Top 3 Séries Netflix selon Thibaut</p>
@@ -91,7 +92,7 @@ class Top3 extends Component {
                 <div class="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedThibaut ? <Top3Thibaut /> : ""}
+                {isShowedThibaut ? <Top3Thibaut closePopUp={closePopUp} popUp={popUp}/> : ""}
                 <div className="titreTop3">
                     
                     <p className="Top3Filipe">Top 3 Séries Netflix selon Damien</p>
@@ -101,7 +102,7 @@ class Top3 extends Component {
                 <div class="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedDamien? <Top3Damien /> : ""}
+                {isShowedDamien? <Top3Damien closePopUp={closePopUp} popUp={popUp}/> : ""}
             </div>
         )
     }
