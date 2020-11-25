@@ -9,17 +9,7 @@
   object-fit: cover;
 }
 
-.cards-MapReco:hover {
-  cursor: pointer;
-}
-
 .year-MapReco {
   font-size: 16px;
   color: #01356d;
-}
-
-@media screen and (max-width: 769px) {
-  .cards-MapReco:hover {
-    cursor: unset;
-  }
 }
