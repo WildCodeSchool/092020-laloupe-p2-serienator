@@ -112,8 +112,8 @@ class FicheTech extends React.Component {
               <p>({resultat[idKey].first_air_date.substr(0, 4)})</p>
             </div>
             <ul className="tag-FicheTech">
-              {filteredGenre.map((genre) => (
-                <li className="uniqueTag-FicheTech">{genre}</li>
+              {filteredGenre.map((genre, index) => (
+                <li className="uniqueTag-FicheTech" key={index} >{genre} </li>
               ))}
             </ul>
             <p className="overview-FicheTech">{resultat[idKey].overview}</p>

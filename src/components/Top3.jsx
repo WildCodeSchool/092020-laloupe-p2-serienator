@@ -58,9 +58,10 @@ class Top3 extends Component {
 
     render() {
         const { isShowedPhilippe, isShowedDamien, isShowedIngrid, isShowedThibaut } = this.state;
-        const {closePopUp,popUp} = this.props;
+        const {closePopUp,popUp, handleClick, idKey, isLoading } = this.props;
         return (
             <div className="top3Section">
+                
                 <div className="titreTop3">
                     
                     <p className="Top3Filipe">Top 3 Séries Netflix selon Philippe</p>
@@ -69,40 +70,43 @@ class Top3 extends Component {
                     <button type="button" className="fleche" onClick={this.handleClickP}> {isShowedPhilippe ? "˄" : "˅" } </button>
                     
                 </div>
-                <div class="flexTrait">
+                <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedPhilippe ? <Top3Philippe closePopUp={closePopUp} popUp={popUp}/> : ""}
+                {isShowedPhilippe ? <Top3Philippe/> : ""}
+                
                 <div className="titreTop3">
                     
                     <p className="Top3Filipe">Top 3 Séries Netflix selon Ingrid  </p>
                     <button type="button" className="fleche" onClick={this.handleClickI}> {isShowedIngrid ? "˄" : "˅" } </button>    
                                   
                 </div>
-                <div class="flexTrait">
+                <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedIngrid ? <Top3Ingrid closePopUp={closePopUp}  popUp={popUp}/> : ""}
+                {isShowedIngrid ? <Top3Ingrid /> : ""}
+               
                 <div className="titreTop3">
                     
                     <p className="Top3Filipe">Top 3 Séries Netflix selon Thibaut</p>
                     <button type="button" className="fleche" onClick={this.handleClickT}> {isShowedThibaut ? "˄" : "˅" } </button>    
                                   
                 </div>
-                <div class="flexTrait">
+                <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedThibaut ? <Top3Thibaut closePopUp={closePopUp} popUp={popUp}/> : ""}
+                {isShowedThibaut ? <Top3Thibaut /> : ""}
+                
                 <div className="titreTop3">
                     
                     <p className="Top3Filipe">Top 3 Séries Netflix selon Damien</p>
                     <button type="button" className="fleche" onClick={this.handleClickD}> {isShowedDamien ? "˄" : "˅" } </button>    
                                   
                 </div>
-                <div class="flexTrait">
+                <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedDamien? <Top3Damien closePopUp={closePopUp} popUp={popUp}/> : ""}
+                {isShowedDamien? <Top3Damien /> : ""}
             </div>
         )
     }

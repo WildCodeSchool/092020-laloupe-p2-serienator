@@ -281,6 +281,7 @@ class App extends React.Component {
       isLoading: true,
       popUp: true,
     });
+    
   };
 
   closePopUp = () => {
@@ -346,7 +347,7 @@ class App extends React.Component {
           popUp={popUp}
         />
         <TransitionTop3 />
-        <Top3 closePopUp={this.closePopUp} popUp={popUp}/>
+        <Top3 closePopUp={this.closePopUp} popUp={popUp} handleClick={this.handleFicheTech} idKey={idKey} isLoading={isLoading}/>
         <Footer />
       </div>
     );

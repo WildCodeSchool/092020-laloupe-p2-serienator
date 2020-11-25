@@ -3,8 +3,7 @@
     background: url('../images/background-top.jpeg') center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    padding-top: 100px;
-    padding-bottom: 80px;
+    padding: 100px 0;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -50,7 +49,7 @@
     }
     .top3Section{
         
-        padding-top: 80px;
+        padding-top: 50px;
         padding-bottom: 30px;
         
        
@@ -98,3 +97,4 @@
     font-family: 'Roboto', sans-serif;
     color : #01356d;
 }
+
