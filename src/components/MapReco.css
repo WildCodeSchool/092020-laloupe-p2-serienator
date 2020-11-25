@@ -4,6 +4,9 @@
 
 .cards-MapReco img {
   border-radius: 10px;
+  height: 300px;
+  width: 200px;
+  object-fit: cover;
 }
 
 .cards-MapReco:hover {
@@ -13,4 +16,10 @@
 .year-MapReco {
   font-size: 16px;
   color: #01356d;
+}
+
+@media screen and (max-width: 769px) {
+  .cards-MapReco:hover {
+    cursor: unset;
+  }
 }

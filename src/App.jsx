@@ -22,7 +22,7 @@ const placeHolderInit = [
 ];
 const buttonTextInit = ["1ère Série", "2ème Série", "Réinitialiser"];
 const buttonClassInit = ["Btnserie1", "Btnserie2", "Btnserie1"];
-const disabledInit = [false, false, "disabled"];
+const disabledInit = ["", "", "disabled"];
 const screenStep = [offScreen, glitchScreen, loadingScreen, successScreen];
 
 class App extends React.Component {
@@ -65,7 +65,11 @@ class App extends React.Component {
       buttonClass: buttonClassInit[0],
       placeHolder: placeHolderInit[0],
       resultSearch: [],
+      isLoading: false,
+      idKey: 0,
+      popUp: true,
     };
+    this.matchmakingDiv = React.createRef();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -127,6 +131,12 @@ class App extends React.Component {
         if (counter === 0) {
           serieSearch[0] = serie;
           serieSearch[0].keywords = keywords;
+          if (this.matchmakingDiv.current) {
+            this.matchmakingDiv.current.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+            });
+          }
         } else if (counter === 1) {
           serieSearch[1] = serie;
           serieSearch[1].keywords = keywords;
@@ -193,6 +203,7 @@ class App extends React.Component {
         placeHolder: placeHolderInit[newCounter],
         screen: screenStep[newCounter],
         inputValue: "",
+        isLoading: false,
       });
     }
   };
@@ -213,26 +224,69 @@ class App extends React.Component {
   };
 
   algoMatchmaking = () => {
-    const { serieSearch, recoSeries } = this.state;
+    const { serieSearch } = this.state;
+    let filterGenre = `${serieSearch[0].genres}||${serieSearch[1].genres}`;
+    let filterKeyword = `${serieSearch[0].keywords}||${serieSearch[1].keywords}`;
+    const filterLanguage = `${serieSearch[0].original_language}||${serieSearch[1].original_language}`;
+    if (filterGenre.includes("10762")) {
+      filterGenre = "10762";
+      filterKeyword = "";
+    }
+    if (filterKeyword === "||") {
+      filterKeyword = "";
+    }
+    if (filterGenre === "||") {
+      filterGenre = "";
+    }
+    const url = `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${filterKeyword}&with_genres=${filterGenre}&with_original_language=${filterLanguage}&vote_count.gte=50`;
+    console.log(url);
+    axios.get(url).then((res) => {
+      let recommandedSeries = [];
+      const { results } = res.data;
+      for (let i = 0; i < results.length; i += 1) {
+        if (
+          results[i].id === serieSearch[0].idS ||
+          results[i].id === serieSearch[1].idS
+        ) {
+          results.splice(i, 1);
+          i -= 1;
+        }
+      }
+      recommandedSeries = results.splice(0, 5);
+      this.setState({ recoSeries: recommandedSeries });
+    });
+  };
+
+  getSeries = () => {
+    const indexAleatoirePage = Math.floor(Math.random() * 15 + 1);
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&with_keywords=${serieSearch[0].keywords}||${serieSearch[1].keywords}&with_genres=${serieSearch[0].genres}||${serieSearch[1].genres}&with_original_language=${serieSearch[0].original_language}||${serieSearch[1].original_language}&vote_count.gte=100`
+        `https://api.themoviedb.org/3/discover/tv?api_key=590e90c03c55c8852b1ed2de7215607f&language=fr&sort_by=vote_average.desc&include_adult=false&include_video=false&page=${indexAleatoirePage}&vote_count.gte=500`
       )
       .then((res) => {
-        const recommandedSeries = [];
+        const randomSeries = [];
         const { results } = res.data;
-        for (let i = 0; i < results.length; i += 1) {
-          if (
-            results[i].id === serieSearch[0].idS ||
-            results[i].id === serieSearch[1].idS
-          ) {
-            results.splice(i, 1);
-          }
+        for (let i = 0; i < 5; i += 1) {
+          const randomNumber = Math.floor(Math.random() * results.length);
+          randomSeries.push(results.splice(randomNumber, 1)[0]);
         }
-        recommandedSeries.push(results.splice(0, 5));
-        this.setState({ recoSeries: recommandedSeries });
-        console.log(recoSeries);
+        this.setState({ recoSeries: randomSeries });
       });
+  };
+
+  handleFicheTech = (index) => {
+    this.setState({
+      idKey: index,
+      isLoading: true,
+      popUp: true,
+    });
+  };
+
+  closePopUp = () => {
+    const { popUp } = this.state;
+    if (popUp === true) {
+      this.setState({ popUp: false });
+    }
   };
 
   render() {
@@ -246,6 +300,10 @@ class App extends React.Component {
       resultSearch,
       screen,
       serieSearch,
+      recoSeries,
+      idKey,
+      isLoading,
+      popUp,
     } = this.state;
     return (
       <div className="App">
@@ -261,7 +319,11 @@ class App extends React.Component {
           handleSubmit={this.handleSubmit}
           handleClick={this.handleClick}
         />
-        <Matchmaking screen={screen} serieSearch={serieSearch} />
+        <Matchmaking
+          screen={screen}
+          serieSearch={serieSearch}
+          ref={this.matchmakingDiv}
+        />
         <MatchmakingMobile
           placeHolder={placeHolder}
           inputValue={inputValue}
@@ -273,8 +335,15 @@ class App extends React.Component {
           handleClick={this.handleClick}
           serieSearch={serieSearch}
         />
-        <Lucky />
-        <OurReco />
+        <Lucky getSeries={this.getSeries} />
+        <OurReco
+          recoSeries={recoSeries}
+          handleClick={this.handleFicheTech}
+          idKey={idKey}
+          isLoading={isLoading}
+          closePopUp={this.closePopUp}
+          popUp={popUp}
+        />
         <Top3 />
         <Footer />
       </div>
