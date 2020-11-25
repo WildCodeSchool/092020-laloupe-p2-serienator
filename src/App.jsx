@@ -8,7 +8,7 @@ import OurReco from "./components/OurReco";
 import Lucky from "./components/Lucky";
 import Footer from "./components/Footer";
 import TransitionTop3 from "./components/TransitionTop3";
-import Slide from "./components/Slide";
+// import Slide from "./components/Slide";
 import "./App.css";
 import imgDefault from "./images/questioncard3.jpeg";
 import loadingScreen from "./images/loading-screen.gif";
