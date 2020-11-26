@@ -11,20 +11,18 @@ function CardsMobile(props) {
   };
 
   return (
-    <div>
-      <div
-        className="cards-mobile"
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        role="button"
-        tabIndex="0"
-      >
-        <img
-          className="qmark"
-          src={card.poster_path}
-          alt="Sélectionner un série"
-        />
-      </div>
+    <div
+      className="cards-mobile"
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      role="button"
+      tabIndex="0"
+    >
+      <img
+        className="qmark"
+        src={card.poster_path}
+        alt="Sélectionner un série"
+      />
     </div>
   );
 }

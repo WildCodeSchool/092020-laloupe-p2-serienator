@@ -1,14 +1,12 @@
-import React from 'react'
-import MapReco from "./MapReco"
-import FicheTech from "./FicheTech"
-import PropTypes from "prop-types";
-import "./Top3Perso.css"
+import React from "react";
+import "./Top3Perso.css";
 import arrow from "../images/arrow-204-xxl.png";
+import MapReco from "./MapReco";
+import FicheTech from "./FicheTech";
 
 const baseImg = "https://image.tmdb.org/t/p/w200";
 
-const series = [ 
-  
+const series = [
   {
     original_name: "サイコパス",
     id: 43865,
@@ -35,7 +33,7 @@ const series = [
     original_language: "ja",
     original_name: "コードギアス 反逆のルルーシュ",
     overview:
-      "Nous sommes en 2017. Sept ans se sont écoulés depuis que le Nouvel Empire de Britannia a déclaré la guerre au Japon. Ce dernier, n’ayant pu résister aux robots de combat de l’Empire (appelés Nightmares), est devenu un territoire de l’Empire connu sous le nom de Zone 11. Lelouch, jeune étudiant qui se joue des nobles, se retrouve un jour impliqué dans le vol d’une arme chimique, qui s’avère être en réalité une fille.",     
+      "Nous sommes en 2017. Sept ans se sont écoulés depuis que le Nouvel Empire de Britannia a déclaré la guerre au Japon. Ce dernier, n’ayant pu résister aux robots de combat de l’Empire (appelés Nightmares), est devenu un territoire de l’Empire connu sous le nom de Zone 11. Lelouch, jeune étudiant qui se joue des nobles, se retrouve un jour impliqué dans le vol d’une arme chimique, qui s’avère être en réalité une fille.",
     poster_path: "/8p3HXHOQXjMpU9gAkZVAqozhDzQ.jpg",
     vote_average: 6.8,
     vote_count: 2,
@@ -52,10 +50,11 @@ const series = [
     genre_ids: [16, 10765, 18, 10768, 9648],
     original_language: "ja",
     backdrop_path: "/2b0s0iMNl9CgrCMz0VGKlMw3vZw.jpg",
-    overview:"Dans un monde ravagé par des titans mangeurs d’homme depuis plus d’un siècle, les rares survivants de l’Humanité n’ont d’autre choix pour survivre que de se barricader dans une cité-forteresse. Le jeune Eren, témoin de la mort de sa mère dévorée par un titan, n’a qu’un rêve : entrer dans le corps d’élite chargé de découvrir l’origine des titans, et les annihiler jusqu’au dernier…",
+    overview:
+      "Dans un monde ravagé par des titans mangeurs d’homme depuis plus d’un siècle, les rares survivants de l’Humanité n’ont d’autre choix pour survivre que de se barricader dans une cité-forteresse. Le jeune Eren, témoin de la mort de sa mère dévorée par un titan, n’a qu’un rêve : entrer dans le corps d’élite chargé de découvrir l’origine des titans, et les annihiler jusqu’au dernier…",
     origin_country: ["JP"],
     popularity: 67.814,
-  }
+  },
 ];
 
 class Top3Ingrid extends React.Component {
@@ -63,16 +62,16 @@ class Top3Ingrid extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      popUp : true,
+      popUp: true,
       idKey: 0,
       resultat: series,
       selectedIndex: {
         previous1: 2,
         current: 0,
         next1: 1,
-    },
+      },
+    };
   }
-}
 
   closePopUp = () => {
     const { popUp } = this.state;
@@ -87,9 +86,9 @@ class Top3Ingrid extends React.Component {
       selectedIndex: {
         previous1:
           selectedIndex.previous1 === 2 ? 0 : selectedIndex.previous1 + 1,
-         current: selectedIndex.current === 2 ? 0 : selectedIndex.current + 1,
+        current: selectedIndex.current === 2 ? 0 : selectedIndex.current + 1,
         next1: selectedIndex.next1 === 2 ? 0 : selectedIndex.next1 + 1,
-        },
+      },
     });
   };
 
@@ -98,10 +97,10 @@ class Top3Ingrid extends React.Component {
     this.setState({
       selectedIndex: {
         previous1:
-          selectedIndex.previous1 === 0 ? 2: selectedIndex.previous1 - 1,
-         current: selectedIndex.current === 0 ? 2 : selectedIndex.current - 1,
+          selectedIndex.previous1 === 0 ? 2 : selectedIndex.previous1 - 1,
+        current: selectedIndex.current === 0 ? 2 : selectedIndex.current - 1,
         next1: selectedIndex.next1 === 0 ? 2 : selectedIndex.next1 - 1,
-        },
+      },
     });
   };
 
@@ -117,65 +116,64 @@ class Top3Ingrid extends React.Component {
     }
     return null;
   };
+
   handleClick = (index) => {
     this.setState({
       idKey: index,
       isLoading: true,
-      popUp:true
+      popUp: true,
     });
   };
 
   render() {
-    const { handleClick, clickNext, clickPrevious, determineClass, closePopUp} = this;
-    const { idKey, isLoading, resultat, selectedIndex, popUp} = this.state;
+    const {
+      handleClick,
+      clickNext,
+      clickPrevious,
+      determineClass,
+      closePopUp,
+    } = this;
+    const { idKey, isLoading, resultat, selectedIndex, popUp } = this.state;
     return (
       <section className="display-OurReco">
         <div className="scene">
-          <button
-            type="button"
-            className="previous"
-            onClick={clickPrevious}
-          >
-            
+          <button type="button" className="previous" onClick={clickPrevious}>
             <img src={arrow} alt="previous" className="arrow" />
           </button>
-                      <div className="recoPerso">
-                              {resultat.map((serie, index) => (
-
-                                            <button
-                                                  type="button"
-                                                  className={`btnTop3D ${determineClass(selectedIndex, index)}`}
-                                                  key={serie.id}
-                                                  onClick={() => handleClick(index)}
-                                                >
-                                                  <MapReco
-                                                    posterPath={
-                                                      serie.poster_path ? baseImg + serie.poster_path : testPatern
-                                                    }
-                                                    name={serie.name}
-                                                    year={serie.first_air_date.substr(0, 4)}
-                                                    key={serie.id}
-                                                  />
-                                            </button>
-                                            
-                                ))}
-                      </div>
-                  <button
-                  type="button"
-                  className="next"
-                  onClick={clickNext}
-                  >
-                  <img src={arrow} alt="next" className="arrow" />
-                </button>
-                </div>
-            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} closePopUp={closePopUp} popUp={popUp}/> : <></>}
-                                 
+          <div className="recoPerso">
+            {resultat.map((serie, index) => (
+              <button
+                type="button"
+                className={`btnTop3D ${determineClass(selectedIndex, index)}`}
+                key={serie.id}
+                onClick={() => handleClick(index)}
+              >
+                <MapReco
+                  posterPath={baseImg + serie.poster_path}
+                  name={serie.name}
+                  year={serie.first_air_date.substr(0, 4)}
+                  key={serie.id}
+                />
+              </button>
+            ))}
+          </div>
+          <button type="button" className="next" onClick={clickNext}>
+            <img src={arrow} alt="next" className="arrow" />
+          </button>
+        </div>
+        {isLoading ? (
+          <FicheTech
+            resultat={resultat}
+            idKey={idKey}
+            closePopUp={closePopUp}
+            popUp={popUp}
+          />
+        ) : (
+          <></>
+        )}
       </section>
     );
   }
 }
-Top3Ingrid.propTypes = {
-  closePopUp: PropTypes.func.isRequired,
-  popUp: PropTypes.bool.isRequired,
-};
+
 export default Top3Ingrid;

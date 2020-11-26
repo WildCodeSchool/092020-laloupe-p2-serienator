@@ -118,19 +118,23 @@
 
   .closeCross {
     display: block;
-    width: 25px;
-    height: 25px;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     z-index: 6000;
-    right: 25px;
     background-color: inherit;
-    border: solid 1px #01356d;
-    border-radius: 50px;
-    color: #01356d;
+    border: none;
   }
 
-  .closeCross img {
-    width: 100%;
+  .closeCrossImg:hover {
+    cursor: pointer;
+  }
+
+  .closeCrossImg {
+    font-size: 40px;
+    color: #01356d;
   }
 
   .closePopUp {
@@ -140,6 +144,7 @@
   .description-FicheTech {
     padding: 6%;
     width: 100%;
+    height: 100%;
   }
 
   .card-imgFicheTech {
@@ -150,5 +155,29 @@
 
   .title-FicheTechMob {
     text-align: center;
+  }
+
+  .overview-FicheTech {
+    position: absolute;
+    bottom: 10%;
+    left: 6%;
+    right: 6%;
+    height: 25%;
+    overflow: scroll;
+    padding-right: 10px;
+  }
+
+  .baseline-FicheTech {
+    margin-bottom: 0;
+  }
+
+  .tag-FicheTech {
+    padding: 5px 0;
+    justify-content: center;
+  }
+
+  .uniqueTag-FicheTech {
+    padding: 2px;
+    margin: 3px;
   }
 }

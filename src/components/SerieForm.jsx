@@ -20,8 +20,8 @@ function SerieForm(props) {
     handleClick,
   } = props;
   return (
-    <form className="SerieForm2">
-      <div className="Error">
+    <form className="SerieForm2" onSubmit={handleSubmit}>
+      <div className={error ? "Error" : "none"}>
         <p>{error}</p>
       </div>
       <div className="SerieForm">
