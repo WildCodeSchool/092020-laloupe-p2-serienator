@@ -17,11 +17,12 @@ function Header(props) {
     handleChange,
     handleSubmit,
     handleClick,
+    handleTop,
   } = props;
   return (
     <header className="header">
       <div className="backgroundHeader">
-        <BtnsTop />
+        <BtnsTop handleTop={handleTop} />
         <h1 className="titre">Bienvenue sur SerieNator,</h1>
         <p className="soustitre">
           Le robot de Match-Making de séries TV le plus performant du Web.
@@ -61,6 +62,7 @@ Header.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
+  handleTop: PropTypes.func.isRequired,
 };
 
 export default Header;
