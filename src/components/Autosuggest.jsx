@@ -24,7 +24,7 @@ function Autosuggest(props) {
       <form onSubmit={handleSubmit} className="form-Autosuggest">
         <div className="input-mobile-container">
           <input
-            placeholder={placeHolder}
+            placeholder={placeHolder.substr(0, 25)}
             id="title"
             name="title"
             type="text"

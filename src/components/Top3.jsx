@@ -9,7 +9,7 @@ class Top3 extends Component {
   constructor() {
     super();
     this.state = {
-      isShowedPhilippe: false,
+      isShowedPhilippe: true,
       isShowedIngrid: false,
       isShowedDamien: false,
       isShowedThibaut: false,
