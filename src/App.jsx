@@ -18,7 +18,7 @@ const baseImg = "https://image.tmdb.org/t/p/w200";
 const placeHolderInit = [
   "Entre ta 1ère Série",
   "Entre ta 2ème Série",
-  "cliquer sur Réinitialiser pour réessayer",
+  "Clique sur Réinitialiser pour réessayer",
 ];
 const buttonTextInit = ["1ère Série", "2ème Série", "Réinitialiser"];
 const buttonClassInit = ["Btnserie1", "Btnserie2", "Btnserie1"];
@@ -247,7 +247,6 @@ class App extends React.Component {
     axios.get(url).then((res) => {
       const { results } = res.data;
       if (results.length >= 5) {
-        console.log("results >=5");
         for (let i = 0; i < results.length; i += 1) {
           if (
             results[i].id === serieSearch[0].idS ||
@@ -313,7 +312,6 @@ class App extends React.Component {
   };
 
   handleClickButtonTop = () => {
-    console.log("click");
     this.top3Section.current.scrollIntoView({
       behavior: "smooth",
       block: "start",
