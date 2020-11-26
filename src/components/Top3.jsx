@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Top3Philippe from "./Top3Philippe";
 import Top3Damien from "./Top3Damien";
 import Top3Ingrid from "./Top3Ingrid";
@@ -64,78 +63,76 @@ class Top3 extends Component {
       isShowedIngrid,
       isShowedThibaut,
     } = this.state;
-    const { closePopUp, popUp } = this.props;
+
     return (
       <div className="top3Section">
         <div className="titreTop3">
-          <p className="Top3Filipe">Top 3 Séries Netflix selon Philippe</p>
+          <button
+            type="button"
+            className="buttonTop3"
+            onClick={this.handleClickP}
+          >
+            <p className="Top3Filipe">Top 3 Séries selon Philippe</p>
+            <p className="fleche">{isShowedPhilippe ? "˄" : "˅"}</p>
+          </button>
+        </div>
 
-          <button type="button" className="fleche" onClick={this.handleClickP}>
-            {" "}
-            {isShowedPhilippe ? "˄" : "˅"}{" "}
-          </button>
-        </div>
         <div className="flexTrait">
           <hr className="traitDessus" />
         </div>
-        {isShowedPhilippe ? (
-          <Top3Philippe closePopUp={closePopUp} popUp={popUp} />
-        ) : (
-          ""
-        )}
+
+        {isShowedPhilippe ? <Top3Philippe /> : ""}
+
         <div className="titreTop3">
-          <p className="Top3Filipe">Top 3 Séries Netflix selon Ingrid </p>
-          <button type="button" className="fleche" onClick={this.handleClickI}>
-            {" "}
-            {isShowedIngrid ? "˄" : "˅"}{" "}
+          <button
+            type="button"
+            className="buttonTop3"
+            onClick={this.handleClickI}
+          >
+            <p className="Top3Filipe">Top 3 Séries Animées selon Ingrid</p>
+            <p className="fleche">{isShowedIngrid ? "˄" : "˅"}</p>
           </button>
         </div>
         <div className="flexTrait">
           <hr className="traitDessus" />
         </div>
-        {isShowedIngrid ? (
-          <Top3Ingrid closePopUp={closePopUp} popUp={popUp} />
-        ) : (
-          ""
-        )}
+        {isShowedIngrid ? <Top3Ingrid /> : ""}
+
         <div className="titreTop3">
-          <p className="Top3Filipe">Top 3 Séries Netflix selon Thibaut</p>
-          <button type="button" className="fleche" onClick={this.handleClickT}>
-            {" "}
-            {isShowedThibaut ? "˄" : "˅"}{" "}
+          <button
+            type="button"
+            className="buttonTop3"
+            onClick={this.handleClickT}
+          >
+            <p className="Top3Filipe">Top 3 Séries Sci-Fi selon Thibaut</p>
+            <p className="fleche">{isShowedThibaut ? "˄" : "˅"}</p>
           </button>
         </div>
+
         <div className="flexTrait">
           <hr className="traitDessus" />
         </div>
-        {isShowedThibaut ? (
-          <Top3Thibaut closePopUp={closePopUp} popUp={popUp} />
-        ) : (
-          ""
-        )}
+
+        {isShowedThibaut ? <Top3Thibaut /> : ""}
+
         <div className="titreTop3">
-          <p className="Top3Filipe">Top 3 Séries Netflix selon Damien</p>
-          <button type="button" className="fleche" onClick={this.handleClickD}>
-            {" "}
-            {isShowedDamien ? "˄" : "˅"}{" "}
+          <button
+            type="button"
+            className="buttonTop3"
+            onClick={this.handleClickD}
+          >
+            <p className="Top3Filipe">Top 3 Séries selon Damien</p>
+            <p className="fleche">{isShowedDamien ? "˄" : "˅"}</p>
           </button>
         </div>
+
         <div className="flexTrait">
           <hr className="traitDessus" />
         </div>
-        {isShowedDamien ? (
-          <Top3Damien closePopUp={closePopUp} popUp={popUp} />
-        ) : (
-          ""
-        )}
+        {isShowedDamien ? <Top3Damien /> : ""}
       </div>
     );
   }
 }
 
 export default Top3;
-
-Top3.propTypes = {
-  closePopUp: PropTypes.func.isRequired,
-  popUp: PropTypes.bool.isRequired,
-};

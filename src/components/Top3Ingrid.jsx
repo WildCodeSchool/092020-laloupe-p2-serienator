@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+import "./Top3Perso.css";
+import arrow from "../images/arrow-204-xxl.png";
 import MapReco from "./MapReco";
 import FicheTech from "./FicheTech";
-import "./Top3Ingrid.css";
 
 const baseImg = "https://image.tmdb.org/t/p/w200";
 
@@ -51,7 +51,7 @@ const series = [
     original_language: "ja",
     backdrop_path: "/2b0s0iMNl9CgrCMz0VGKlMw3vZw.jpg",
     overview:
-      "Several hundred years ago, humans were nearly exterminated by Titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest Titans. Flash forward to the present and the city has not seen a Titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a Colossal Titan that appears out of thin air. As the smaller Titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single Titan and take revenge for all of mankind.",
+      "Dans un monde ravagé par des titans mangeurs d’homme depuis plus d’un siècle, les rares survivants de l’Humanité n’ont d’autre choix pour survivre que de se barricader dans une cité-forteresse. Le jeune Eren, témoin de la mort de sa mère dévorée par un titan, n’a qu’un rêve : entrer dans le corps d’élite chargé de découvrir l’origine des titans, et les annihiler jusqu’au dernier…",
     origin_country: ["JP"],
     popularity: 67.814,
   },
@@ -62,40 +62,104 @@ class Top3Ingrid extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
+      popUp: true,
       idKey: 0,
       resultat: series,
+      selectedIndex: {
+        previous1: 2,
+        current: 0,
+        next1: 1,
+      },
     };
   }
+
+  closePopUp = () => {
+    const { popUp } = this.state;
+    if (popUp === true) {
+      this.setState({ popUp: false });
+    }
+  };
+
+  clickPrevious = () => {
+    const { selectedIndex } = this.state;
+    this.setState({
+      selectedIndex: {
+        previous1:
+          selectedIndex.previous1 === 2 ? 0 : selectedIndex.previous1 + 1,
+        current: selectedIndex.current === 2 ? 0 : selectedIndex.current + 1,
+        next1: selectedIndex.next1 === 2 ? 0 : selectedIndex.next1 + 1,
+      },
+    });
+  };
+
+  clickNext = () => {
+    const { selectedIndex } = this.state;
+    this.setState({
+      selectedIndex: {
+        previous1:
+          selectedIndex.previous1 === 0 ? 2 : selectedIndex.previous1 - 1,
+        current: selectedIndex.current === 0 ? 2 : selectedIndex.current - 1,
+        next1: selectedIndex.next1 === 0 ? 2 : selectedIndex.next1 - 1,
+      },
+    });
+  };
+
+  determineClass = (selectedIndex, cardIndex) => {
+    if (selectedIndex.current === cardIndex) {
+      return "active";
+    }
+    if (selectedIndex.next1 === cardIndex) {
+      return "next1";
+    }
+    if (selectedIndex.previous1 === cardIndex) {
+      return "previous1";
+    }
+    return null;
+  };
 
   handleClick = (index) => {
     this.setState({
       idKey: index,
       isLoading: true,
+      popUp: true,
     });
   };
 
   render() {
-    const { closePopUp, popUp } = this.props;
-    const { handleClick } = this;
-    const { idKey, isLoading, resultat } = this.state;
+    const {
+      handleClick,
+      clickNext,
+      clickPrevious,
+      determineClass,
+      closePopUp,
+    } = this;
+    const { idKey, isLoading, resultat, selectedIndex, popUp } = this.state;
     return (
       <section className="display-OurReco">
-        <div className="recoPerso">
-          {resultat.map((serie, index) => (
-            <button
-              type="button"
-              className="btn-OurReco"
-              key={serie.id}
-              onClick={() => handleClick(index)}
-            >
-              <MapReco
-                posterPath={baseImg + serie.poster_path}
-                name={serie.name}
-                year={serie.first_air_date.substr(0, 4)}
+        <div className="scene">
+          <button type="button" className="previous" onClick={clickPrevious}>
+            <img src={arrow} alt="previous" className="arrow" />
+          </button>
+          <div className="recoPerso">
+            {resultat.map((serie, index) => (
+              <button
+                type="button"
+                className={`btnTop3D ${determineClass(selectedIndex, index)}`}
                 key={serie.id}
-              />
-            </button>
-          ))}
+                onClick={() => handleClick(index)}
+              >
+                <MapReco
+                  posterPath={baseImg + serie.poster_path}
+                  name={serie.name}
+                  year={serie.first_air_date.substr(0, 4)}
+                  key={serie.id}
+                />
+              </button>
+            ))}
+          </div>
+          <button type="button" className="next" onClick={clickNext}>
+            <img src={arrow} alt="next" className="arrow" />
+          </button>
         </div>
         {isLoading ? (
           <FicheTech
@@ -111,8 +175,5 @@ class Top3Ingrid extends React.Component {
     );
   }
 }
-Top3Ingrid.propTypes = {
-  closePopUp: PropTypes.func.isRequired,
-  popUp: PropTypes.bool.isRequired,
-};
+
 export default Top3Ingrid;

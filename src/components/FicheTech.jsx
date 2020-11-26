@@ -124,7 +124,9 @@ class FicheTech extends React.Component {
             </div>
             <ul className="tag-FicheTech">
               {filteredGenre.map((genre) => (
-                <li className="uniqueTag-FicheTech">{genre}</li>
+                <li className="uniqueTag-FicheTech" key={genre}>
+                  {genre}{" "}
+                </li>
               ))}
             </ul>
             <p className="overview-FicheTech">{resultat[idKey].overview}</p>

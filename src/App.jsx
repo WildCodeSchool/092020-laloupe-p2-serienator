@@ -378,7 +378,13 @@ class App extends React.Component {
           popUp={popUp}
         />
         <TransitionTop3 ref={this.top3Section} />
-        <Top3 closePopUp={this.closePopUp} popUp={popUp} />
+        <Top3
+          closePopUp={this.closePopUp}
+          popUp={popUp}
+          handleClick={this.handleFicheTech}
+          idKey={idKey}
+          isLoading={isLoading}
+        />
         <Footer />
       </div>
     );
