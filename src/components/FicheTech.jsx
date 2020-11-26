@@ -31,7 +31,8 @@ class FicheTech extends React.Component {
   scrollLock = () => {
     const { popUp } = this.props;
     const scrollPos = document.body;
-    if (popUp === true) {
+    const screenW = window.screen.width;
+    if (popUp === true && screenW < 1024) {
       scrollPos.style.overflowY = "hidden";
     } else {
       scrollPos.style.overflowY = "initial";
