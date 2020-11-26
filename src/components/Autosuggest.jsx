@@ -15,12 +15,14 @@ function Autosuggest(props) {
     handleChange,
     handleSubmit,
     handleClick,
+    buttonText,
   } = props;
 
   return (
     <div className="serie-select">
+      <p className={error ? "error-mobile" : ""}>{error}</p>
       <form onSubmit={handleSubmit} className="form-Autosuggest">
-        <label htmlFor="title">
+        <div className="input-mobile-container">
           <input
             placeholder={placeHolder}
             id="title"
@@ -29,8 +31,14 @@ function Autosuggest(props) {
             value={inputValue}
             onChange={handleChange}
           />
-        </label>
-        <p>{error}</p>
+          <button
+            type="button"
+            className="mobile-submit-btn"
+            onClick={handleSubmit}
+          >
+            {buttonText}
+          </button>
+        </div>
         <ul className="container-Autosuggest">
           {resultSearch.map((resultat, index) => (
             <ResultAuto
@@ -51,14 +59,13 @@ function Autosuggest(props) {
   );
 }
 Autosuggest.propTypes = {
-  resultSearch: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  ).isRequired,
+  resultSearch: PropTypes.arrayOf(PropTypes.object).isRequired,
   placeHolder: PropTypes.string.isRequired,
   inputValue: PropTypes.string.isRequired,
   error: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
+  buttonText: PropTypes.string.isRequired,
 };
 export default Autosuggest;

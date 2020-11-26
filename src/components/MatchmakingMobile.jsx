@@ -29,6 +29,7 @@ class MatchmakingMobile extends React.Component {
       handleChange,
       handleSubmit,
       handleClick,
+      buttonText,
     } = this.props;
     const { isOpen } = this.state;
     const { handleTap } = this;
@@ -48,6 +49,7 @@ class MatchmakingMobile extends React.Component {
               handleChange={handleChange}
               handleSubmit={handleSubmit}
               handleClick={handleClick}
+              buttonText={buttonText}
             />
           )}
         </div>
@@ -65,5 +67,6 @@ MatchmakingMobile.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleClick: PropTypes.func.isRequired,
   serieSearch: PropTypes.arrayOf(PropTypes.object).isRequired,
+  buttonText: PropTypes.string.isRequired,
 };
 export default MatchmakingMobile;

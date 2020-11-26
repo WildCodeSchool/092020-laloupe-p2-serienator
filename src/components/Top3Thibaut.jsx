@@ -1,14 +1,12 @@
-import React from 'react'
-import MapReco from "./MapReco"
-import FicheTech from "./FicheTech"
+import React from "react";
 import PropTypes from "prop-types";
-import "./Top3Thibaut.css"
-
+import MapReco from "./MapReco";
+import FicheTech from "./FicheTech";
+import "./Top3Thibaut.css";
 
 const baseImg = "https://image.tmdb.org/t/p/w200";
 
-const series = [ 
-  
+const series = [
   {
     original_name: "Final Space",
     id: 74387,
@@ -56,7 +54,7 @@ const series = [
       "À Westworld, un parc d'attractions dernier cri, les visiteurs paient des fortunes pour revivre le frisson de la conquête de l'Ouest. Dolores, Teddy et bien d'autres sont des androïdes à apparence humaine créés pour donner l'illusion et offrir du dépaysement aux clients. Pour ces derniers, Westworld est l'occasion de laisser libre-cours à leurs fantasmes. Cet univers bien huilé est mis en péril lorsqu'à la suite d'une mise à jour, quelques robots commencent à adopter des comportements imprévisibles, voire erratiques. En coulisses, l'équipe, qui tire les ficelles de ce monde alternatif, s'inquiète de ces incidents de plus en plus nombreux. Les enjeux du programme Westworld étant énormes, la Direction ne peut se permettre une mauvaise publicité qui ferait fuir ses clients. Que se passe-t-il réellement avec les androïdes ré-encodés ?",
     origin_country: ["US"],
     popularity: 90.483,
-  }
+  },
 ];
 
 class Top3Thibaut extends React.Component {
@@ -77,45 +75,46 @@ class Top3Thibaut extends React.Component {
   };
 
   render() {
-    const {closePopUp,popUp} = this.props;
+    const { closePopUp, popUp } = this.props;
     const { handleClick } = this;
     const { idKey, isLoading, resultat } = this.state;
     return (
       <section className="display-OurReco">
-        
-            <div className="recoPerso">
-                    {resultat.map((serie, index) => (
-
-                                  <button
-                                        type="button"
-                                        className="btn-OurReco"
-                                        key={serie.id}
-                                        onClick={() => handleClick(index)}
-                                      >
-                                        <MapReco
-                                          posterPath={
-                                            serie.poster_path ? baseImg + serie.poster_path : testPatern
-                                          }
-                                          name={serie.name}
-                                          year={serie.first_air_date.substr(0, 4)}
-                                          key={serie.id}
-                                        />
-                                  </button>
-                                  
-                      ))}
-            </div>
-            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} closePopUp={closePopUp}
-            popUp={popUp} /> : <></>}
-                                 
+        <div className="recoPerso">
+          {resultat.map((serie, index) => (
+            <button
+              type="button"
+              className="btn-OurReco"
+              key={serie.id}
+              onClick={() => handleClick(index)}
+            >
+              <MapReco
+                posterPath={baseImg + serie.poster_path}
+                name={serie.name}
+                year={serie.first_air_date.substr(0, 4)}
+                key={serie.id}
+              />
+            </button>
+          ))}
+        </div>
+        {isLoading ? (
+          <FicheTech
+            resultat={resultat}
+            idKey={idKey}
+            closePopUp={closePopUp}
+            popUp={popUp}
+          />
+        ) : (
+          <></>
+        )}
       </section>
     );
   }
 }
 
-Top3Thibaut .propTypes = {
+Top3Thibaut.propTypes = {
   closePopUp: PropTypes.func.isRequired,
   popUp: PropTypes.bool.isRequired,
 };
-
 
 export default Top3Thibaut;

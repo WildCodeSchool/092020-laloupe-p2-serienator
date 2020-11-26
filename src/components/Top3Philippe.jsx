@@ -1,18 +1,16 @@
-import React from 'react'
-import MapReco from "./MapReco"
-import FicheTech from "./FicheTech"
+import React from "react";
 import PropTypes from "prop-types";
-import "./Top3Philippe.css"
-
+import MapReco from "./MapReco";
+import FicheTech from "./FicheTech";
+import "./Top3Philippe.css";
 
 const baseImg = "https://image.tmdb.org/t/p/w200";
 
-const series = [ 
-  
+const series = [
   {
     original_name: "Fargo",
     id: 60622,
-    name:  "Fargo",
+    name: "Fargo",
     vote_count: 1385,
     vote_average: 8.2,
     first_air_date: "2014-04-15",
@@ -23,7 +21,7 @@ const series = [
     overview:
       "En 2006, l'arrivée de Lorne Malvo à Bemidji, une petite ville du Minnesota, ne passe pas inaperçue, notamment pour Lester Nygaard, un courtier qui se retrouve entraîné dans une spirale de violence. Molly Solverson et Gus Grimly enquêtent eux sur plusieurs meurtres. Une trentaine d'année auparavant, un policier, de retour au pays après la guerre du Vietnam, mène les investigations après un meurtre.",
     origin_country: ["US"],
-    popularity: 69.211
+    popularity: 69.211,
   },
   {
     backdrop_path: "/ecT6wR78bXHLbqAwtLNMDVirdit.jpg",
@@ -56,7 +54,7 @@ const series = [
       "Considéré comme mort depuis des années, James Keziah Delaney refait surface à Londres en 1814, après 10 ans passés en Afrique. De retour en possession de diamants acquis illégalement et bien décidé à venger la mort de son père, il va refuser de vendre ce qu'il reste de l'héritage familial à la Compagnie britannique des Indes orientales et se mettre en tête de bâtir son propre empire de négoce et de transport. Mais James, qui va rapidement comprendre qu'il a de nombreux ennemis, va devoir naviguer bien des eaux troubles pour rester en vie et parvenir à ses fins.",
     origin_country: ["GB"],
     popularity: 19.26,
-  }
+  },
 ];
 
 class Top3Philippe extends React.Component {
@@ -77,35 +75,38 @@ class Top3Philippe extends React.Component {
   };
 
   render() {
-    const {closePopUp,popUp} = this.props;
+    const { closePopUp, popUp } = this.props;
     const { handleClick } = this;
     const { idKey, isLoading, resultat } = this.state;
     return (
       <section className="display-OurReco">
-        
-            <div className="recoPerso">
-                    {resultat.map((serie, index) => (
-
-                                  <button
-                                        type="button"
-                                        className="btn-OurReco"
-                                        key={serie.id}
-                                        onClick={() => handleClick(index)}
-                                      >
-                                        <MapReco
-                                          posterPath={
-                                            serie.poster_path ? baseImg + serie.poster_path : testPatern
-                                          }
-                                          name={serie.name}
-                                          year={serie.first_air_date.substr(0, 4)}
-                                          key={serie.id}
-                                        />
-                                  </button>
-                                  
-                      ))}
-            </div>
-            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} closePopUp={closePopUp} popUp={popUp} /> : <></>}
-                                 
+        <div className="recoPerso">
+          {resultat.map((serie, index) => (
+            <button
+              type="button"
+              className="btn-OurReco"
+              key={serie.id}
+              onClick={() => handleClick(index)}
+            >
+              <MapReco
+                posterPath={baseImg + serie.poster_path}
+                name={serie.name}
+                year={serie.first_air_date.substr(0, 4)}
+                key={serie.id}
+              />
+            </button>
+          ))}
+        </div>
+        {isLoading ? (
+          <FicheTech
+            resultat={resultat}
+            idKey={idKey}
+            closePopUp={closePopUp}
+            popUp={popUp}
+          />
+        ) : (
+          <></>
+        )}
       </section>
     );
   }

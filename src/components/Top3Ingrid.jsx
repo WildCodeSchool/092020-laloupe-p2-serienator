@@ -1,14 +1,12 @@
-import React from 'react'
-import MapReco from "./MapReco"
-import FicheTech from "./FicheTech"
+import React from "react";
 import PropTypes from "prop-types";
-import "./Top3Ingrid.css"
-
+import MapReco from "./MapReco";
+import FicheTech from "./FicheTech";
+import "./Top3Ingrid.css";
 
 const baseImg = "https://image.tmdb.org/t/p/w200";
 
-const series = [ 
-  
+const series = [
   {
     original_name: "サイコパス",
     id: 43865,
@@ -35,7 +33,7 @@ const series = [
     original_language: "ja",
     original_name: "コードギアス 反逆のルルーシュ",
     overview:
-      "Nous sommes en 2017. Sept ans se sont écoulés depuis que le Nouvel Empire de Britannia a déclaré la guerre au Japon. Ce dernier, n’ayant pu résister aux robots de combat de l’Empire (appelés Nightmares), est devenu un territoire de l’Empire connu sous le nom de Zone 11. Lelouch, jeune étudiant qui se joue des nobles, se retrouve un jour impliqué dans le vol d’une arme chimique, qui s’avère être en réalité une fille.",     
+      "Nous sommes en 2017. Sept ans se sont écoulés depuis que le Nouvel Empire de Britannia a déclaré la guerre au Japon. Ce dernier, n’ayant pu résister aux robots de combat de l’Empire (appelés Nightmares), est devenu un territoire de l’Empire connu sous le nom de Zone 11. Lelouch, jeune étudiant qui se joue des nobles, se retrouve un jour impliqué dans le vol d’une arme chimique, qui s’avère être en réalité une fille.",
     poster_path: "/8p3HXHOQXjMpU9gAkZVAqozhDzQ.jpg",
     vote_average: 6.8,
     vote_count: 2,
@@ -56,7 +54,7 @@ const series = [
       "Several hundred years ago, humans were nearly exterminated by Titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest Titans. Flash forward to the present and the city has not seen a Titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a Colossal Titan that appears out of thin air. As the smaller Titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single Titan and take revenge for all of mankind.",
     origin_country: ["JP"],
     popularity: 67.814,
-  }
+  },
 ];
 
 class Top3Ingrid extends React.Component {
@@ -77,35 +75,38 @@ class Top3Ingrid extends React.Component {
   };
 
   render() {
-    const {closePopUp,popUp} = this.props;
+    const { closePopUp, popUp } = this.props;
     const { handleClick } = this;
     const { idKey, isLoading, resultat } = this.state;
     return (
       <section className="display-OurReco">
-        
-            <div className="recoPerso">
-                    {resultat.map((serie, index) => (
-
-                                  <button
-                                        type="button"
-                                        className="btn-OurReco"
-                                        key={serie.id}
-                                        onClick={() => handleClick(index)}
-                                      >
-                                        <MapReco
-                                          posterPath={
-                                            serie.poster_path ? baseImg + serie.poster_path : testPatern
-                                          }
-                                          name={serie.name}
-                                          year={serie.first_air_date.substr(0, 4)}
-                                          key={serie.id}
-                                        />
-                                  </button>
-                                  
-                      ))}
-            </div>
-            {isLoading ? <FicheTech resultat={resultat} idKey={idKey} closePopUp={closePopUp} popUp={popUp}/> : <></>}
-                                 
+        <div className="recoPerso">
+          {resultat.map((serie, index) => (
+            <button
+              type="button"
+              className="btn-OurReco"
+              key={serie.id}
+              onClick={() => handleClick(index)}
+            >
+              <MapReco
+                posterPath={baseImg + serie.poster_path}
+                name={serie.name}
+                year={serie.first_air_date.substr(0, 4)}
+                key={serie.id}
+              />
+            </button>
+          ))}
+        </div>
+        {isLoading ? (
+          <FicheTech
+            resultat={resultat}
+            idKey={idKey}
+            closePopUp={closePopUp}
+            popUp={popUp}
+          />
+        ) : (
+          <></>
+        )}
       </section>
     );
   }

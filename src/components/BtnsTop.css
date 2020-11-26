@@ -5,32 +5,10 @@
   z-index: 8000;
 }
 
-.btnChance {
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  border-radius: 15px;
-  padding: 10px;
-  margin-right: 10px;
-  margin-top: 20px;
-  z-index: 3000;
-}
-
-.btnChance:hover {
-  border: 1px solid white;
-  background: white;
-  color: black;
-  transition: ease-in-out 0.4s;
-  border-radius: 15px;
-  padding: 10px;
-  margin-right: 10px;
-  margin-top: 20px;
-}
-
 .nosTops {
   border: 0px;
   background: #e1af74cc;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 10px;
   margin-right: 30px;
   margin-top: 20px;
