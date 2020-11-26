@@ -2,10 +2,8 @@ import React from "react";
 import axios from "axios";
 import "./FicheTech.css";
 import PropTypes from "prop-types";
-import closeCross from "../images/close_cross_icon_128690.svg";
 
 const baseImg = "https://image.tmdb.org/t/p/w300";
-// const baseBg = "https://image.tmdb.org/t/p/w780";
 
 class FicheTech extends React.Component {
   constructor(props) {
@@ -18,15 +16,27 @@ class FicheTech extends React.Component {
 
   componentDidMount() {
     this.getApiGenre();
+    this.scrollLock();
   }
 
   componentDidUpdate(prevProps) {
-    const { idKey } = this.props;
+    const { idKey, popUp } = this.props;
     const { tvId } = this.state;
-    if (prevProps.idKey !== idKey) {
+    if (prevProps.idKey !== idKey || prevProps.popUp !== popUp) {
       this.getGenre(tvId);
+      this.scrollLock();
     }
   }
+
+  scrollLock = () => {
+    const { popUp } = this.props;
+    const scrollPos = document.body;
+    if (popUp === true) {
+      scrollPos.style.overflowY = "hidden";
+    } else {
+      scrollPos.style.overflowY = "initial";
+    }
+  };
 
   getApiGenre = () => {
     axios
@@ -96,7 +106,7 @@ class FicheTech extends React.Component {
           onClick={closePopUp}
           onKeyPress={handleKeyPress}
         >
-          <img src={closeCross} alt="CloseCross" />
+          <p className="closeCrossImg">&#215;</p>
         </button>
         <div className="card-imgFicheTech">
           <img
