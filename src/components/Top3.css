@@ -1,0 +1,93 @@
+.top3Section {
+  margin-bottom: 50px;
+  background: url("../images/background-top.jpeg") center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.titreTop3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 20px;
+  width: 800px;
+}
+.flexTrait {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: -20px;
+  margin-bottom: 10px;
+}
+.traitDessus {
+  border-top: 1px solid #01356d;
+  width: 800px;
+}
+@media screen and (min-width: 1200px) {
+  .traitDessus {
+    border-top: 1px solid #01356d;
+    width: 800px;
+  }
+}
+@media screen and (min-width: 770px) and (max-width: 1119px) {
+  .traitDessus {
+    border-top: 1px solid #01356d;
+    width: 550px;
+  }
+  .titreTop3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 20px;
+    width: 550px;
+  }
+  .top3Section {
+    padding-top: 80px;
+    padding-bottom: 30px;
+  }
+}
+@media screen and (min-width: 0px) and (max-width: 769px) {
+  .traitDessus {
+    border-top: 1px solid #01356d;
+    width: 300px;
+  }
+  .titreTop3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: "Roboto", sans-serif;
+    margin-bottom: 20px;
+    width: 300px;
+  }
+  .top3Section {
+    padding-top: 50px;
+    padding-bottom: 30px;
+  }
+}
+
+.fleche {
+  font-size: 20px;
+  border: none;
+  background-color: initial;
+  width: 20px;
+}
+.fleche:hover {
+  font-size: 20px;
+  border: none;
+  background-color: initial;
+  width: 20px;
+
+  transform: rotate(180deg);
+  transition: transform 330ms ease-in-out;
+}
+
+.Top3Filipe {
+  font-family: "Roboto", sans-serif;
+  color: #01356d;
+}
