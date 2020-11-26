@@ -1,9 +1,9 @@
 import React from "react";
 import "./TransitionTop3.css";
 
-function TransitionTop3() {
+const TransitionTop3 = React.forwardRef((props, ref) => {
   return (
-    <div className="Transition">
+    <div className="Transition" ref={ref}>
       <div className="backgroundHeader">
         <div className="text">
           <h2 className="textMachine">Déçu par notre machine ?</h2>
@@ -12,6 +12,6 @@ function TransitionTop3() {
       </div>
     </div>
   );
-}
+});
 
 export default TransitionTop3;

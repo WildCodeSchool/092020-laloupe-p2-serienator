@@ -70,6 +70,7 @@ class App extends React.Component {
       popUp: true,
     };
     this.matchmakingDiv = React.createRef();
+    this.top3Section = React.createRef();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -311,6 +312,14 @@ class App extends React.Component {
     }
   };
 
+  handleClickButtonTop = () => {
+    console.log("click");
+    this.top3Section.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   render() {
     const {
       placeHolder,
@@ -340,6 +349,7 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           handleClick={this.handleClick}
+          handleTop={this.handleClickButtonTop}
         />
         <Matchmaking
           screen={screen}
@@ -367,7 +377,7 @@ class App extends React.Component {
           closePopUp={this.closePopUp}
           popUp={popUp}
         />
-        <TransitionTop3 />
+        <TransitionTop3 ref={this.top3Section} />
         <Top3 closePopUp={this.closePopUp} popUp={popUp} />
         <Footer />
       </div>
