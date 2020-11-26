@@ -50,7 +50,7 @@ const series = [
     vote_average: 8.2,
     first_air_date: "2016-10-02",
     poster_path: "/y55oBgf6bVMI7sFNXwJDrSIxPQt.jpg",
-    genre_ids: [18],
+    genre_ids: [37, 10765],
     original_language: "en",
     backdrop_path: "/uRojJ77wDQdzzVvP1VDjnvCWiDb.jpg",
     overview:

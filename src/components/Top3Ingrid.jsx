@@ -52,8 +52,7 @@ const series = [
     genre_ids: [16, 10765, 18, 10768, 9648],
     original_language: "ja",
     backdrop_path: "/2b0s0iMNl9CgrCMz0VGKlMw3vZw.jpg",
-    overview:
-      "Several hundred years ago, humans were nearly exterminated by Titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest Titans. Flash forward to the present and the city has not seen a Titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a Colossal Titan that appears out of thin air. As the smaller Titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single Titan and take revenge for all of mankind.",
+    overview:"Dans un monde ravagé par des titans mangeurs d’homme depuis plus d’un siècle, les rares survivants de l’Humanité n’ont d’autre choix pour survivre que de se barricader dans une cité-forteresse. Le jeune Eren, témoin de la mort de sa mère dévorée par un titan, n’a qu’un rêve : entrer dans le corps d’élite chargé de découvrir l’origine des titans, et les annihiler jusqu’au dernier…",
     origin_country: ["JP"],
     popularity: 67.814,
   }
@@ -70,7 +69,7 @@ class Top3Ingrid extends React.Component {
       selectedIndex: {
         previous1: 2,
         current: 0,
-        next1: 1,       
+        next1: 1,
     },
   }
 }

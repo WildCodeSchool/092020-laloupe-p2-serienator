@@ -61,48 +61,56 @@ class Top3 extends Component {
         const {closePopUp,popUp, handleClick, idKey, isLoading } = this.props;
         return (
             <div className="top3Section">
-                
-                <div className="titreTop3">
-                    
-                    <p className="Top3Filipe">Top 3 Séries Netflix selon Philippe</p>
-                    
-                    
-                    <button type="button" className="fleche" onClick={this.handleClickP}> {isShowedPhilippe ? "˄" : "˅" } </button>
-                    
+
+                <label>
+                <div className="titreTop3">                    
+                    <p className="Top3Filipe">Top 3 Séries selon Philippe</p>     
+                    <button type="button" className="fleche" onClick={this.handleClickP}> {isShowedPhilippe ? "˄" : "˅" } </button>                    
                 </div>
+                </label>
+
                 <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
-                {isShowedPhilippe ? <Top3Philippe/> : ""}
                 
+                {isShowedPhilippe ? <Top3Philippe/> : ""}
+
+                <label>
                 <div className="titreTop3">
-                    
-                    <p className="Top3Filipe">Top 3 Séries Netflix selon Ingrid  </p>
+                
+                    <p className="Top3Filipe">Top 3 Séries Animées selon Ingrid  </p>
                     <button type="button" className="fleche" onClick={this.handleClickI}> {isShowedIngrid ? "˄" : "˅" } </button>    
                                   
                 </div>
+                </label>
+
                 <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
                 {isShowedIngrid ? <Top3Ingrid /> : ""}
-               
+
+                <label>               
                 <div className="titreTop3">
                     
-                    <p className="Top3Filipe">Top 3 Séries Netflix selon Thibaut</p>
+                    <p className="Top3Filipe">Top 3 Séries Science-Fiction selon Thibaut</p>
                     <button type="button" className="fleche" onClick={this.handleClickT}> {isShowedThibaut ? "˄" : "˅" } </button>    
                                   
                 </div>
+                </label>
                 <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
+
                 {isShowedThibaut ? <Top3Thibaut /> : ""}
                 
+                <label> 
                 <div className="titreTop3">
                     
-                    <p className="Top3Filipe">Top 3 Séries Netflix selon Damien</p>
+                    <p className="Top3Filipe">Top 3 Séries selon Damien</p>
                     <button type="button" className="fleche" onClick={this.handleClickD}> {isShowedDamien ? "˄" : "˅" } </button>    
                                   
                 </div>
+                </label>
                 <div className="flexTrait">
                     <hr className="traitDessus"/>
                 </div>
