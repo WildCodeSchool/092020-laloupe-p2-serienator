@@ -1,0 +1,91 @@
+.Error {
+  display: block;
+  color: #fff8e3;
+  font-size: 24px;
+  height: auto;
+  width: 400px;
+  text-align: center;
+  padding-bottom: 15px;
+}
+
+.SerieForm2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  min-width: 700px;
+  height: auto;
+  overflow: hidden;
+}
+
+.SerieForm {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.Btnserie1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: 0px;
+  background: #e1af74;
+  border-radius: 40px;
+  padding: 10px 30px;
+  height: 65px;
+  color: white;
+  font-size: larger;
+  margin-left: -55px;
+  z-index: 4200;
+}
+.Btnserie1:hover {
+  border: 0px;
+  background: #df9c51;
+  transition: ease-in-out 0.4s;
+}
+
+.Btnserie2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border: 0px;
+  background: rgb(72, 158, 238);
+  border-radius: 40px;
+  padding: 10px 30px;
+  height: 65px;
+  color: white;
+  font-size: larger;
+  margin-left: -55px;
+  z-index: 4200;
+}
+
+.Btnserie2:hover {
+  background: rgb(39, 89, 136);
+  transition: ease-in-out 0.4s;
+}
+
+.SerieForm input {
+  margin-bottom: 1em;
+  width: 70%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  font-size: 20px;
+  z-index: 4000;
+}
+
+.containerAutosuggest {
+  margin-top: -20px;
+  width: 55%;
+  z-index: 3;
+}
+
+@media screen and (max-width: 589px) {
+  .SerieForm2 {
+    display: none;
+  }
+}

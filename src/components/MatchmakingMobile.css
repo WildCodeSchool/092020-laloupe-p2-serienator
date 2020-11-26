@@ -1,0 +1,26 @@
+section.matchmaking-mobile {
+  display: none;
+}
+@media screen and (max-width: 589px) {
+  section.matchmaking-mobile {
+    display: flex;
+    flex-direction: column;
+    background-image: url(../images/background-matchmaking.-mobile.jpeg);
+    background-size: 100% 100%;
+    height: auto;
+    width: 100%;
+    padding-bottom: 30px;
+  }
+
+  .mobile-position {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    height: auto;
+  }
+
+  .matchmaking-mobile h2 {
+    padding: 30px 20px;
+  }
+}

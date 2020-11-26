@@ -1,0 +1,66 @@
+.LuckySection {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  background-color: #fefce1;
+}
+
+.LuckyTitle {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.luckyBtn {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  border: 0px;
+  background: #e1af74;
+  border-radius: 40px;
+  padding: auto;
+
+  height: 50px;
+  width: 225px;
+  color: white;
+  font-size: larger;
+  cursor: pointer;
+}
+.luckyBtn:hover {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+
+  border: 0px;
+  background: #df9c51;
+  transition: ease-in-out 0.4s;
+  border-radius: 40px;
+  padding: auto;
+}
+.reco5 {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media screen and (max-width: 589px) {
+  .LuckySection {
+    padding: 30px;
+  }
+
+  .luckyBtn {
+    height: 40px;
+    width: 150px;
+    font-size: 16px;
+    margin: 25px;
+  }
+}

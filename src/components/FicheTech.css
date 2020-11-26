@@ -1,0 +1,179 @@
+.display-FicheTech {
+  display: flex;
+  margin: 4% 10%;
+  height: 450px;
+}
+
+.card-imgFicheTech {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+  height: 450px;
+}
+
+.display-FicheTech .imgFicheTech {
+  border-radius: 10px;
+  height: 450px;
+  width: 300px;
+  object-fit: cover;
+}
+
+.description-FicheTech {
+  padding-left: 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 75%;
+}
+
+.tag-FicheTech {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.uniqueTag-FicheTech {
+  display: flex;
+  border: solid 1px #01356d;
+  border-radius: 10px;
+  padding: 2px;
+  background-color: #fff8e3;
+  margin: 10px;
+}
+
+.overview-FicheTech {
+  padding: 10px 0;
+  text-align: justify;
+}
+
+.baseline-FicheTech {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.note-FicheTech {
+  display: flex;
+  align-items: baseline;
+}
+
+.note-sup8 {
+  color: #1ebc24;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.note-sup6 {
+  color: orange;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.note-inf6 {
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.button-FicheTech {
+  border-radius: 50px;
+  padding: 5px 15px;
+  background-color: #e1af74;
+  color: white;
+  border: none;
+}
+
+.button-FicheTech:hover {
+  cursor: pointer;
+}
+
+.closeCross {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .display-FicheTech {
+    position: fixed;
+    width: 100vh;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5000;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .display-FicheTech .imgFicheTech {
+    border-radius: 10px;
+    height: 300px;
+    width: 200px;
+    object-fit: cover;
+  }
+
+  .closeCross {
+    display: block;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 6000;
+    background-color: inherit;
+    border: none;
+  }
+
+  .closeCrossImg:hover {
+    cursor: pointer;
+  }
+
+  .closeCrossImg {
+    font-size: 40px;
+    color: #01356d;
+  }
+
+  .closePopUp {
+    display: none;
+  }
+
+  .description-FicheTech {
+    padding: 6%;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-imgFicheTech {
+    margin: 20px auto;
+    width: 200px;
+    height: 300px;
+  }
+
+  .title-FicheTechMob {
+    text-align: center;
+  }
+
+  .overview-FicheTech {
+    max-height: 150px;
+    overflow: scroll;
+    padding-right: 10px;
+  }
+
+  .baseline-FicheTech {
+    margin-bottom: 0;
+  }
+
+  .tag-FicheTech {
+    padding: 5px 0;
+    justify-content: center;
+  }
+
+  .uniqueTag-FicheTech {
+    padding: 2px;
+    margin: 3px;
+  }
+}

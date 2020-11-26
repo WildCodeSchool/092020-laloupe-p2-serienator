@@ -21,3 +21,10 @@ Builds the app for production to the `dist` folder.<br />
 
 This app came with basic ESLint config (Prettier + Airbnb), you can run it every time using this script.
 Remember, it also come with Husky, so it will automatically runs every time you commit !:fire:
+
+Credits :
+
+- pictures :
+  toppng-old-tv.png : old tv png images background @ abdoshaaban Dotson / CopyRight : Free-personal (toppng.com)
+
+kisspng-television.png : La Télévision, Téléviseur, Rétro Réseau De Télévision /CopyRight : Personal-use (freepng.fr)

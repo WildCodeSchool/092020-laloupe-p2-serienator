@@ -1,0 +1,99 @@
+.matchmaking {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(../images/background-matchmaking2.jpeg);
+  background-size: 100% 100%;
+  background-position: bottom;
+  padding: 50px 0;
+}
+
+.matchmaking .matchmaking-container {
+  display: flex;
+  width: 100%;
+  padding: 50px 10% 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.matchmaking-card {
+  display: flex;
+  min-width: 200px;
+  width: 200px;
+  height: 300px;
+  border-radius: 15px;
+  background-color: linear-gradient(180deg, #0f69a7, #01356d);
+  box-shadow: 2px 5px 6px rgba(0, 0, 0, 0.33);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.matchmaking-card img {
+  color: #e1af74;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tv-component {
+  display: flex;
+}
+
+.tv-component .cable {
+  max-width: 600px;
+  z-index: 0;
+}
+
+.tv-component .cable img {
+  position: relative;
+  top: 30%;
+  left: -10%;
+  width: 120%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.tv-component .tv {
+  position: relative;
+}
+
+.tv-component .tv img {
+  position: relative;
+  width: 250px;
+  z-index: 1;
+}
+
+.tv-component .tv .tv-screen {
+  width: 250px;
+  overflow: hidden;
+}
+
+.tv-component .tv .tv-screen img {
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 175px;
+  z-index: 0;
+}
+
+@media screen and (max-width: 870px) {
+  .tv-component {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 589px) {
+  .matchmaking {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .cable {
+    display: none;
+  }
+}

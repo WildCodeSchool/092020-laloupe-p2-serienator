@@ -1,0 +1,38 @@
+.container-ResultAuto {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  margin-left: -60px;
+}
+
+.container-ResultAuto:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.container-ResultAuto img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.container-ResultAuto p {
+  color: #01356d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+.container-img {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+}
+
+@media screen and (max-width: 589px) {
+  .container-ResultAuto {
+    margin-left: 0;
+    z-index: 3;
+  }
+}
