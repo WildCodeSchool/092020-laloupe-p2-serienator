@@ -135,7 +135,7 @@ class Top3Thibaut extends React.Component {
     } = this;
     const { idKey, isLoading, resultat, selectedIndex, popUp } = this.state;
     return (
-      <section className="display-OurReco">
+      <section className="bgNone">
         <div className="scene">
           <button type="button" className="previous" onClick={clickPrevious}>
             <img src={arrow} alt="previous" className="arrow" />
