@@ -1,6 +1,6 @@
 .top3Section {
   margin-bottom: 50px;
-  background-image: url("../images/background-top.jpeg") center;
+  background-image: url("../images/background-top.jpeg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   padding: 100px 0;
